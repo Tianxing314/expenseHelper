@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/ic_search"
+        android:title="search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/ic_main_option_menu"
+        android:title="menu op"
+        android:icon="@drawable/ic_option_menu"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/main_menu_option1"
+                android:title="menu op1"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:id="@+id/main_menu_option2"
+                android:title="menu op3"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:id="@+id/main_menu_option3"
+                android:title="menu op3"
+                app:showAsAction="never"
+                />
+        </menu>
+    </item>
+
+
+
+</menu>
