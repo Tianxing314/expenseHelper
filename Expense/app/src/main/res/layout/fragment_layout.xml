@@ -6,16 +6,7 @@
     tools:context=".DemoFragment1">
 
     <!-- TODO: Update blank fragment layout -->
-    <!--
-    <TextView
-        android:id="@+id/txt_display"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        />
-    -->
+
     <!--list view-->
     <ListView
         android:id="@+id/lv_main"
@@ -24,5 +15,13 @@
 
     </ListView>
 
+    <!--
+    <ExpandableListView
+        android:id="@+id/lv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ExpandableListView>
+    -->
 
 </FrameLayout>

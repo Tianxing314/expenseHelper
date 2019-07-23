@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -19,9 +20,6 @@ import java.util.Map;
  * A simple {@link Fragment} subclass.
  */
 public class DemoFragment2 extends Fragment {
-    //private TextView textView;
-    //private ListView listView;
-
 
     public DemoFragment2() {
         // Required empty public constructor
@@ -32,15 +30,12 @@ public class DemoFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_demo, container, false);
-        //textView = view.findViewById(R.id.txt_display);
-        //textView.setText(getArguments().getString("message"));
+        View view = inflater.inflate(R.layout.fragment_layout, container, false);
 
         ListView listView = view.findViewById(R.id.lv_main);
-        //Myadapter
+        //ExpandableListView listView = view.findViewById(R.id.lv_main);
 
-        //##################
-        //2. create data source
+        //Create data source
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("logo", R.drawable.ic_account);
@@ -70,13 +65,12 @@ public class DemoFragment2 extends Fragment {
         map.put("size", "size: 84.24M");
         list.add(map);
 
-        //MyAdapter
-        //MyAdapter adapter = new MyAdapter(getActivity());
+        //Create and set adapter
         Main2Adapter adapter = new Main2Adapter(getActivity());
         adapter.setList(list);
-        //4. connect adapter to listview
+
+        //Connect adapter to listview
         listView.setAdapter(adapter);
-        //######################
 
         return view;
     }

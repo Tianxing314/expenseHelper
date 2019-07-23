@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,15 +34,12 @@ public class DemoFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_demo, container, false);
-        //textView = view.findViewById(R.id.txt_display);
-        //textView.setText(getArguments().getString("message"));
+        View view = inflater.inflate(R.layout.fragment_layout, container, false);
 
         ListView listView = view.findViewById(R.id.lv_main);
-        //Myadapter
+        //ExpandableListView listView = view.findViewById(R.id.lv_main);
 
-        //##################
-        //2. create data source
+        //create data source
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("logo", R.drawable.ic_account);
@@ -65,13 +62,12 @@ public class DemoFragment1 extends Fragment {
         map.put("size", "size: 15.15M");
         list.add(map);
 
-        //MyAdapter
-        //MyAdapter adapter = new MyAdapter(getActivity());
+        //Create and set adapter
         Main1Adapter adapter = new Main1Adapter(getActivity());
         adapter.setList(list);
-        //4. connect adapter to listview
+
+        //Connect adapter to listview
         listView.setAdapter(adapter);
-        //######################
 
         return view;
     }

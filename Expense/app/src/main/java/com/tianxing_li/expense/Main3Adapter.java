@@ -43,22 +43,6 @@ public class Main3Adapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
-        Log.d("sky", ""+i);
-        /*
-        View view = null;
-        Log.i("sky", "i");
-        switch(i) {
-            case 0:
-                view = inflater.inflate(R.layout.item1, null);
-                break;
-            case 1:
-                view = inflater.inflate(R.layout.item2, null);
-                break;
-            case 2:
-                view = inflater.inflate(R.layout.item3, null);
-                break;
-        }*/
-
         View view = inflater.inflate(R.layout.item3, null);
         ImageView logo = view.findViewById(R.id.logo);
         TextView title = view.findViewById(R.id.title);

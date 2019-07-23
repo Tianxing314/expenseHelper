@@ -15,25 +15,22 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment demoFragment = null;
 
+        Bundle bundle = new Bundle();
+        Fragment fragment = null;
         switch (position) {
             case 0:
-                demoFragment = new DemoFragment1();
+                fragment = new DemoFragment1();
                 break;
             case 1:
-                demoFragment = new DemoFragment2();
+                fragment = new DemoFragment2();
                 break;
             case 2:
-                demoFragment = new DemoFragment3();
+                fragment = new DemoFragment3();
                 break;
         }
-        //DemoFragment1 demoFragment = new DemoFragment1();
-        position = position + 1;
-        Bundle bundle = new Bundle();
-        bundle.putString("message", "Fragment: " + position);
-        demoFragment.setArguments(bundle);
-        return demoFragment;
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -44,7 +41,15 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        position = position + 1;
+        switch(position) {
+            case 0:
+                return "Not Submit";
+            case 1:
+                return "Pending";
+            case 2:
+                return "Finished";
+
+        }
         return "Fragment " + position;
     }
 }
