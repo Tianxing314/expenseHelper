@@ -8,35 +8,18 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/titleBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
-        <include layout="@layout/toolbar_layout"/>
-
-        <ImageView
-            android:id="@+id/ic_lookup"
-            android:layout_width="wrap_content"
+    //Title bar
+        <RelativeLayout
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentTop="true">
+            <include layout="@layout/toolbar_layout"/>
 
     </RelativeLayout>
 
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add"
-        />
-
-
+    //tab action bar
     <RelativeLayout
         android:id="@+id/tabBar"
         android:layout_width="match_parent"
@@ -55,9 +38,9 @@
             app:tabTextColor="#fff"
             app:tabSelectedTextColor="#0ff"
             />
-
     </RelativeLayout>
 
+    //tab content
     <RelativeLayout
         android:id="@+id/tabContent"
         android:layout_width="match_parent"
@@ -72,11 +55,35 @@
 
     </RelativeLayout>
 
+    //account BTN
+    <Button
+        android:id="@+id/accountBTN"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/ic_account"/>
 
 
+    //FAB
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        />
 
-
-
-
+    <TextView
+        android:id="@+id/title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Expense"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>
