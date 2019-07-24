@@ -17,6 +17,12 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.tianxing_li.expense.IO.SettingsReader;
+import com.tianxing_li.expense.IO.SettingsWriter;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.provider.Settings.EXTRA_APP_PACKAGE;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
@@ -27,11 +33,26 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private Spinner currencySpinner;
 
     private boolean setting_notification;
-    //###############################
-    //setting_notification = config_notification (value retrieved from config file)
-    //##############################
+    private String selectedCurrency;
+
+    //Store values get from setting file
+    private SettingsReader settingsReader;
+    private Map<String, String> settingMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //set notification
+        settingsReader = new SettingsReader(this);
+        settingMap = settingsReader.getSettingsMap();
+
+        if (settingsReader.getNotificationSetting().equals("off")) {
+            setting_notification = false;
+        }
+        else {
+            setting_notification = true;
+        }
+        //############################
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
@@ -42,9 +63,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         accountBTN = findViewById(R.id.setting_account_BTN);
         accountBTN.setOnClickListener(this);
 
+        //Control switch button and the logics in each switch state
         switchBTN = findViewById(R.id.switchBTN);
+
         //set notification switch state according to config and permission
-        //!!!!!!!need to add configuration to store user's setting
         //cannot change to if (setting_notification) because it might be null;
         if (setting_notification==true) {
             //force turn off the notification switch if notification permission is NOT granted
@@ -53,6 +75,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
                 //################
                 //need to set config_notification to false in config file here
+                settingMap.replace("notification", "off");
+                SettingsWriter.saveSettings(this, settingMap);
                 //################
 
                 setting_notification = false;
@@ -60,10 +84,12 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             switchBTN.setChecked(true);
         }
 
+        //set logic for switch state
         switchBTN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b == true) {
+                    //check is notification permission is granted, if not,open device setting page
                     //SDK version must >=24
                     if (!NotificationManagerCompat.from(getBaseContext()).areNotificationsEnabled()) {
                         switchBTN.setChecked(false);
@@ -71,31 +97,44 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                         intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
                         intent.putExtra("android.provider.extra.APP_PACKAGE", getPackageName());
                         startActivity(intent);
-                        Log.d("sky", "on setting page");
                     }
                     else {
                         setting_notification = true;
-                        //################
-                        //need to set config_notification to true in config file here
-                        //################
-                        Toast.makeText(getBaseContext(), "ON", Toast.LENGTH_SHORT).show();
+                        //update notification config to "on" (true) in config file
+                        settingMap.replace("notification", "on");
+                        SettingsWriter.saveSettings(SettingActivity.this, settingMap);
                     }
                 }
                 else {
-                    //################
-                    //need to set config_notification to false in config file here
-                    //################
+                    //update notification config to "off" (false) in config file
+                    settingMap.replace("notification", "off");
+                    SettingsWriter.saveSettings(SettingActivity.this, settingMap);
                     setting_notification = false;
-                    Toast.makeText(getBaseContext(), "OFF", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        //construct spinner for currency selection
         currencySpinner = findViewById(R.id.currency_spinner);
         ArrayAdapter<CharSequence> currencyAdapter = ArrayAdapter.createFromResource(this, R.array.currency, android.R.layout.simple_spinner_item);
         currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         currencySpinner.setAdapter(currencyAdapter);
+
+        //set selectedCurrency and spinner according to configs in setting file
         currencySpinner.setOnItemSelectedListener(this);
+        selectedCurrency = settingsReader.getCurrencySetting();
+        //currency default to CAD$ at position 0
+        int spinnerPosition = 0;
+        switch (selectedCurrency) {
+            case "USD$":
+                spinnerPosition = 1;
+                break;
+            case "CNY¥":
+                spinnerPosition = 2;
+                break;
+        }
+        //update currency spinner
+        currencySpinner.setSelection(spinnerPosition);
     }
 
     @Override
@@ -129,16 +168,18 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    //For currency spinner
+    //For currency spinner when item is selected
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT);
+        //store the selected currency to config
+        selectedCurrency = currencySpinner.getSelectedItem().toString();
+        settingMap.replace("currency", selectedCurrency);
+        SettingsWriter.saveSettings(this, settingMap);
     }
 
-    //For currency spinner
+    //For currency spinner when no item is selected
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
+
 }

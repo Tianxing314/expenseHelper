@@ -6,7 +6,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +20,11 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.tianxing_li.expense.IO.SettingsReader;
+import com.tianxing_li.expense.IO.SettingsWriter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -26,12 +34,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TabLayout tabLayout;
     private FloatingActionButton floatingBTN;
     private Button accountBTN;
+    private Map<String, String> settingsMap;
+    public static final String KEY_FIRST_USE_NOTE = "pref_first_use_note_key";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Check if this is the first time open the app
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (sharedPreferences.getBoolean(KEY_FIRST_USE_NOTE, true)) {
+            Log.i("Sky", "first Time");
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(KEY_FIRST_USE_NOTE, false);
+            editor.apply();
+            //write default setting file
+            settingsMap = new HashMap<>();
+            SettingsWriter.saveSettings(this, settingsMap);
+        }
+        else {
+            Log.i("Sky", "Not");
+
+        }
+
+
+
+        //settingsMap = new HashMap();
+
+        //SettingsWriter.saveSettings(this, settingsMap);
 
         toolbar = findViewById(R.id.toolBar);
         toolbar.setTitle("");
