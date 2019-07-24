@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
@@ -21,8 +22,6 @@ import java.util.Map;
  * A simple {@link Fragment} subclass.
  */
 public class DemoFragment1 extends Fragment {
-    //private TextView textView;
-    //private ListView listView;
 
 
     public DemoFragment1() {
@@ -33,6 +32,7 @@ public class DemoFragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_layout, container, false);
 
@@ -69,7 +69,13 @@ public class DemoFragment1 extends Fragment {
         //Connect adapter to listview
         listView.setAdapter(adapter);
 
+
+
+
+
         return view;
     }
+
+
 
 }

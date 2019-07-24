@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -85,7 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "FAB selected", Toast.LENGTH_SHORT).show();
         }
         else if (view == accountBTN) {
-            Toast.makeText(this, "account BTN selected", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.setClass(this, SettingActivity.class);
+            startActivity(intent);
         }
     }
 }

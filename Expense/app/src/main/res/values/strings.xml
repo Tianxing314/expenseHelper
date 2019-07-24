@@ -3,4 +3,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //string array for currency spinner in setting page
+    <string-array name = "currency">
+        <item>CAD$</item>
+        <item>USD$</item>
+        <item>CNY¥</item>
+    </string-array>
+
 </resources>
