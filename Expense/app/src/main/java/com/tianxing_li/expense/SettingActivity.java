@@ -1,13 +1,11 @@
 package com.tianxing_li.expense;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 import androidx.core.app.NotificationManagerCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,15 +13,11 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.tianxing_li.expense.IO.SettingsReader;
 import com.tianxing_li.expense.IO.SettingsWriter;
 
-import java.util.HashMap;
 import java.util.Map;
-
-import static android.provider.Settings.EXTRA_APP_PACKAGE;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
@@ -57,14 +51,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        backBTN = findViewById(R.id.setting_back_BTN);
+        backBTN = findViewById(R.id.btn_settings_back);
         backBTN.setOnClickListener(this);
 
-        accountBTN = findViewById(R.id.setting_account_BTN);
+        accountBTN = findViewById(R.id.btn_settings_goto_set_account);
         accountBTN.setOnClickListener(this);
 
         //Control switch button and the logics in each switch state
-        switchBTN = findViewById(R.id.switchBTN);
+        switchBTN = findViewById(R.id.switch_settings_control_notification);
 
         //set notification switch state according to config and permission
         //cannot change to if (setting_notification) because it might be null;
@@ -115,7 +109,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         //construct spinner for currency selection
-        currencySpinner = findViewById(R.id.currency_spinner);
+        currencySpinner = findViewById(R.id.spinner_settings_currency);
         ArrayAdapter<CharSequence> currencyAdapter = ArrayAdapter.createFromResource(this, R.array.currency, android.R.layout.simple_spinner_item);
         currencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         currencySpinner.setAdapter(currencyAdapter);

@@ -6,7 +6,7 @@
     tools:context=".MainActivity">
 
     <RelativeLayout
-        android:id="@+id/top"
+        android:id="@+id/rl_signup_hold_title_bar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/colorPrimary"
@@ -20,6 +20,7 @@
             android:background="@drawable/ic_arrow_back" />
 
         <TextView
+            android:id="@+id/tv_signup_signup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -30,45 +31,46 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_signup_hold_signup_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp">
 
         <ImageView
-            android:id="@+id/img_login_account"
+            android:id="@+id/iv_signup_profile_photo"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_account" />
 
         <RelativeLayout
-            android:id="@+id/linear_signup_input"
+            android:id="@+id/rl_signup_hold_edittexts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img_login_account"
+            android:layout_below="@id/iv_signup_profile_photo"
             android:layout_centerHorizontal="true">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/et_signup_email"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="example@email.com" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/et_signup_password"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/email"
+                android:layout_below="@id/et_signup_email"
                 android:layout_marginTop="5dp"
                 android:hint="password"
                 android:inputType="textPassword" />
             <EditText
-                android:id="@+id/passwordVerify"
+                android:id="@+id/et_signup_verify_password"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_below="@id/password"
+                android:layout_below="@id/et_signup_password"
                 android:hint="verify password"
                 android:inputType="textPassword" />
 
@@ -78,7 +80,7 @@
             android:id="@+id/btn_signup_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linear_signup_input"
+            android:layout_below="@id/rl_signup_hold_edittexts"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
@@ -87,6 +89,5 @@
             android:textSize="20sp" />
 
     </RelativeLayout>
-
 
 </RelativeLayout>

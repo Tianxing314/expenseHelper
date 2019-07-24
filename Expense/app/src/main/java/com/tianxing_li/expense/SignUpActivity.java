@@ -2,7 +2,6 @@ package com.tianxing_li.expense;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +30,9 @@ public class SignUpActivity extends AppCompatActivity {
                 finish();
             }
         });
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        verifyPassword = findViewById(R.id.passwordVerify);
+        email = findViewById(R.id.et_signup_email);
+        password = findViewById(R.id.et_signup_password);
+        verifyPassword = findViewById(R.id.et_signup_verify_password);
         btnSignUp = findViewById(R.id.btn_signup_signup);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

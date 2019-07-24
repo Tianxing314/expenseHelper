@@ -8,14 +8,14 @@
 
     //Title bar
     <RelativeLayout
-        android:id="@+id/setting_titleBar"
+        android:id="@+id/rl_settings_title_bar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="?attr/colorPrimary"
         android:layout_alignParentTop="true">
 
         <Button
-            android:id="@+id/setting_back_BTN"
+            android:id="@+id/btn_settings_back"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/ic_arrow_back"
@@ -25,14 +25,14 @@
 
     <!--Account Section -->
     <RelativeLayout
-        android:id="@+id/setting_account_section"
+        android:id="@+id/rl_settings_hold_account_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryDark"
-        android:layout_below="@id/setting_titleBar">
+        android:layout_below="@id/rl_settings_title_bar">
 
         <TextView
-            android:id="@+id/setting_account_bar"
+            android:id="@+id/tv_setting_account_title"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
@@ -44,25 +44,25 @@
             android:textSize="25dp"/>
 
         <RelativeLayout
-            android:id="@+id/setting_account_content"
+            android:id="@+id/rl_settings_hold_account_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:padding="5dp"
-            android:layout_below="@id/setting_account_bar"
+            android:layout_below="@id/tv_setting_account_title"
             android:background="#ffd">
 
             <ImageView
-                android:id="@+id/setting_photo_profile"
+                android:id="@+id/iv_settings_hold_profile_photo"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_account" />
 
             <Button
-                android:id="@+id/setting_account_BTN"
+                android:id="@+id/btn_settings_goto_set_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -76,12 +76,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/setting_photo_profile"
+                android:layout_toRightOf="@id/iv_settings_hold_profile_photo"
                 android:orientation="vertical">
 
 
                 <TextView
-                    android:id="@+id/setting_name"
+                    android:id="@+id/tv_settings_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -89,7 +89,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/setting_email"
+                    android:id="@+id/tv_settings_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -98,7 +98,7 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/size"
+                    android:id="@+id/tv_settings_department"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -114,14 +114,14 @@
 
     <!-- Setting section -->
     <RelativeLayout
-        android:id="@+id/setting_about_section"
+        android:id="@+id/rl_settings_hold_about_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryDark"
-        android:layout_below="@id/setting_setting_section">
+        android:layout_below="@id/rl_settings_hold_settings_section">
 
         <TextView
-            android:id="@+id/setting_about_bar"
+            android:id="@+id/tv_settings_about_title"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
@@ -133,17 +133,17 @@
             android:textSize="25dp"/>
 
         <RelativeLayout
-            android:id="@+id/setting_about_aboutapp"
+            android:id="@+id/rl_settings_hold_aboutapp_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/setting_about_bar"
+            android:layout_below="@id/tv_settings_about_title"
             android:background="#ff0">
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/setting_about_contact_us"
+            android:id="@+id/rl_settings_hold_contact_us_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/setting_about_aboutapp"
+            android:layout_below="@id/rl_settings_hold_aboutapp_section"
             android:background="#ffd">
         </RelativeLayout>
 
@@ -151,14 +151,14 @@
 
     <!-- About section -->
     <RelativeLayout
-        android:id="@+id/setting_setting_section"
+        android:id="@+id/rl_settings_hold_settings_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryDark"
-        android:layout_below="@id/setting_account_section">
+        android:layout_below="@id/rl_settings_hold_account_section">
 
         <TextView
-            android:id="@+id/setting_setting_bar"
+            android:id="@+id/tv_settings_settings_title"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
@@ -170,14 +170,14 @@
             android:textSize="25dp"/>
 
         <RelativeLayout
-            android:id="@+id/setting_setting_notificaion"
+            android:id="@+id/rl_settings_hold_notificaions_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/setting_setting_bar"
+            android:layout_below="@id/tv_settings_settings_title"
             android:background="#ff0">
 
             <ImageView
-                android:id="@+id/ic_notification"
+                android:id="@+id/im_settings_notifications"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_notification"
@@ -185,49 +185,38 @@
                 android:layout_centerVertical="true"/>
 
             <TextView
-                android:id="@+id/title_notification"
+                android:id="@+id/tv_settings_currency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Notifications"
                 android:textSize="20dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/ic_notification"/>
+                android:layout_toRightOf="@id/im_settings_notifications"/>
 
             <Switch
                 android:track="@drawable/switch_track"
                 android:thumb="@drawable/switch_thumb"
-                android:id="@+id/switchBTN"
+                android:id="@+id/switch_settings_control_notification"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
                 />
-
-            <!--
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/notification_toggleBTN"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp"
-                />
-                -->
 
         </RelativeLayout>
 
         //Currency
         <RelativeLayout
-            android:id="@+id/setting_setting_currency"
+            android:id="@+id/rl_settings_hold_currency_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_below="@id/setting_setting_notificaion"
+            android:layout_below="@id/rl_settings_hold_notificaions_section"
             android:background="#ffd">
 
 
             <ImageView
-                android:id="@+id/ic_currency"
+                android:id="@+id/iv_settings_currency"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_currency"
@@ -235,16 +224,16 @@
                 android:layout_centerVertical="true"/>
 
             <TextView
-                android:id="@+id/title_currency"
+                android:id="@+id/tv_settings_currency_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Currency"
                 android:textSize="20dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/ic_currency"/>
+                android:layout_toRightOf="@id/iv_settings_currency"/>
 
             <Spinner
-                android:id="@+id/currency_spinner"
+                android:id="@+id/spinner_settings_currency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -255,7 +244,5 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

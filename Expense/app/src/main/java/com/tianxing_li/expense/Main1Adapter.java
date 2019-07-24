@@ -1,7 +1,6 @@
 package com.tianxing_li.expense;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +42,11 @@ public class Main1Adapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
-        View view = inflater.inflate(R.layout.item1, null);
+        View view = inflater.inflate(R.layout.tab1_item, null);
         ImageView logo = view.findViewById(R.id.logo);
         TextView title = view.findViewById(R.id.title);
         TextView version = view.findViewById(R.id.version);
-        TextView size = view.findViewById(R.id.size);
+        TextView size = view.findViewById(R.id.tv_settings_department);
 
         Map map = list.get(i);
 

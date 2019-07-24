@@ -15,12 +15,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.tianxing_li.expense.IO.SettingsReader;
 import com.tianxing_li.expense.IO.SettingsWriter;
 
 import java.util.HashMap;
@@ -65,21 +63,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //SettingsWriter.saveSettings(this, settingsMap);
 
-        toolbar = findViewById(R.id.toolBar);
+        toolbar = findViewById(R.id.toolbar_main_hold_tools);
         toolbar.setTitle("");
 
         setSupportActionBar(toolbar);
 
-        viewPager = findViewById(R.id.pager);
+        viewPager = findViewById(R.id.vp_main_hold_tab_pages);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-        tabLayout = findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.th_main_hold_tab_heads);
         tabLayout.setupWithViewPager(viewPager);
 
-        floatingBTN = findViewById(R.id.floatingBTN);
+        floatingBTN = findViewById(R.id.fab_main_add_expense_class);
         floatingBTN.setOnClickListener(this);
 
-        accountBTN = findViewById(R.id.accountBTN);
+        accountBTN = findViewById(R.id.btn_main_account);
         accountBTN.setOnClickListener(this);
     }
 
