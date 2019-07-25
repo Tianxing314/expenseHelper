@@ -8,19 +8,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tianxing_li.expense.ADT.ActivityADT;
+import com.tianxing_li.expense.ADT.ActivityClassADT;
+
 import java.util.List;
 import java.util.Map;
 
 public class Main3Adapter extends BaseAdapter {
 
-    List<Map<String, Object>> list;
+    List<ActivityClassADT> list;
     LayoutInflater inflater;
 
     public Main3Adapter(Context context) {
         this.inflater = LayoutInflater.from(context);
     }
 
-    public void setList(List<Map<String, Object>> list) {
+    public void setList(List<ActivityClassADT> list) {
         this.list = list;
     }
 
@@ -43,17 +46,19 @@ public class Main3Adapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
 
         View view = inflater.inflate(R.layout.tab3_item, null);
-        ImageView logo = view.findViewById(R.id.logo);
-        TextView title = view.findViewById(R.id.title);
-        TextView version = view.findViewById(R.id.version);
-        TextView size = view.findViewById(R.id.tv_settings_department);
+        ImageView logo = view.findViewById(R.id.iv_main_tab3_logo);
+        TextView activityName = view.findViewById(R.id.tv_main_tab3_activity_name);
 
+        /*TODO change to ActivityADT
         Map map = list.get(i);
 
         logo.setImageResource((Integer) map.get("logo"));
         title.setText((String) map.get("title"));
-        version.setText((String) map.get("version"));
-        size.setText((String) map.get("size"));
+        */
+        ActivityClassADT activityClassADT = list.get(i);
+        //TODO: change to setImageBitmap and get real image logo
+        logo.setImageResource(R.drawable.ic_account);
+        activityName.setText((String) activityClassADT.getActivityClass());
 
         return view;
     }

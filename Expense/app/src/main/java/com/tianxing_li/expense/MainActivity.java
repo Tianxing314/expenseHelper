@@ -24,7 +24,7 @@ import com.tianxing_li.expense.IO.SettingsWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Toolbar toolbar;
     private ViewPager viewPager;
@@ -57,25 +57,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-
-
-        //settingsMap = new HashMap();
-
-        //SettingsWriter.saveSettings(this, settingsMap);
-
         toolbar = findViewById(R.id.toolbar_main_hold_tools);
         toolbar.setTitle("");
 
         setSupportActionBar(toolbar);
 
+        floatingBTN = findViewById(R.id.fab_main_add_expense_class);
+        floatingBTN.setOnClickListener(this);
+
         viewPager = findViewById(R.id.vp_main_hold_tab_pages);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+
+        //listen to fragment change event
+        //control floatingBTN hide/show
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 0) {
+                    floatingBTN.show();
+                } else {
+                    floatingBTN.hide();
+                }
+            }
+        });
+
+
+
         tabLayout = findViewById(R.id.th_main_hold_tab_heads);
         tabLayout.setupWithViewPager(viewPager);
-
-        floatingBTN = findViewById(R.id.fab_main_add_expense_class);
-        floatingBTN.setOnClickListener(this);
 
         accountBTN = findViewById(R.id.btn_main_account);
         accountBTN.setOnClickListener(this);

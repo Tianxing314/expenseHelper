@@ -3,16 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DemoFragment1">
+    tools:context=".Fragment1">
 
     <!-- TODO: Update blank fragment layout -->
 
     <!--list view-->
+    <!--Set the blank to the end of listview-->
     <ListView
-        android:id="@+id/lv_main"
+        android:id="@+id/lv_main_tab3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
     </ListView>
+
 
 </FrameLayout>

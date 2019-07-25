@@ -3,73 +3,49 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0">
+    android:background="#888">
 
     <!-- line layout -->
     <RelativeLayout
-        android:id="@+id/box"
+        android:id="@+id/rl_main_tab3_hold_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:background="#CCC">
+
 
         <ImageView
-            android:id="@+id/logo"
+            android:id="@+id/iv_main_tab3_logo"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_account" />
 
         <Button
-            android:id="@+id/btn"
+            android:id="@+id/btn_main_tab3_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="Uninstall" />
+            android:background="#fc0"
+            android:text="Details" />
 
         <!-- text part-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_main_tab3_activity_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_toRightOf="@id/iv_main_tab3_logo"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toLeftOf="@id/btn"
-            android:layout_toRightOf="@id/logo"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="PUBG"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="Version 1.0"
-                android:textColor="#999"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_settings_department"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="Size: 18.05M"
-                android:textColor="#999"
-                android:textSize="12sp" />
-
-        </LinearLayout>
+            android:text="DEMO"
+            android:textSize="16sp" />
 
     </RelativeLayout>
-
 
 </RelativeLayout>

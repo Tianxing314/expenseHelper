@@ -12,25 +12,25 @@
     <item
         android:id="@+id/ic_main_option_menu"
         android:title="menu op"
-        android:icon="@drawable/ic_option_menu"
+        android:icon="@drawable/ic_sort"
         app:showAsAction="always">
 
         <menu>
             <item
                 android:id="@+id/main_menu_option1"
-                android:title="menu op1"
+                android:title="Name"
                 app:showAsAction="never"
                 />
 
             <item
                 android:id="@+id/main_menu_option2"
-                android:title="menu op3"
+                android:title="Date"
                 app:showAsAction="never"
                 />
 
             <item
                 android:id="@+id/main_menu_option3"
-                android:title="menu op3"
+                android:title="Amount"
                 app:showAsAction="never"
                 />
         </menu>
