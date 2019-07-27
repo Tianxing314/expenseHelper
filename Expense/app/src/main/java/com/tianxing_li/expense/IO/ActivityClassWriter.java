@@ -1,6 +1,7 @@
 package com.tianxing_li.expense.IO;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.tianxing_li.expense.ADT.ActivityClassADT;
 
@@ -14,14 +15,15 @@ public class ActivityClassWriter {
     public static boolean saveActivityClass(Activity activity, ActivityClassADT activityClassADT) {
         String activityClassName = activityClassADT.getActivityClass();
         String state = activityClassADT.getState();
+        String time = activityClassADT.getTime();
 
         //return false if filename already exist
-        if (loadText(activity, activityClassName) != null) {
+        if (loadText(activity, (activityClassName + time)) != null) {
             return false;
         }
-        //create an empty file with name = activityClassName
+        //create an empty file with name = activityClassName + time
         //This empty file will be used to save activityADTs that belong to activityClass
-        saveText(activity, "", activityClassName);
+        saveText(activity, "", (activityClassName + time));
 
         //load the existing activity_class_name_file content that contains all activityClassName
         //String existingFileContent = "";
@@ -29,16 +31,17 @@ public class ActivityClassWriter {
         ArrayList<String> existingFileContent = loadText(activity, "activity_class_name_file");
 
         if (existingFileContent.equals("[]")) {
-            String newFileContent = activityClassName + "," + state + "\n";
+            String newFileContent = activityClassName + "," + state + "," + time + "\n";
             saveText(activity, newFileContent, "activity_class_name_file");
         }
         //append the new activityClassName to activity_class_name_file
         else {
             String newFileContent = "";
             for (int i = 0; i < existingFileContent.size(); i++) {
-                newFileContent += existingFileContent.get(i);
+                Log.i("Sky", existingFileContent.get(i)+"nextLine");
+                newFileContent = newFileContent + existingFileContent.get(i) + "\n";
             }
-            newFileContent = newFileContent  + activityClassName + "," + state + "\n";
+            newFileContent = newFileContent  + activityClassName + "," + state + "," + time + "\n";
             saveText(activity, newFileContent, "activity_class_name_file");
         }
 

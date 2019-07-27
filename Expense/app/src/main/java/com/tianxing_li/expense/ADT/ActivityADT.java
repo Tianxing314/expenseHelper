@@ -6,18 +6,16 @@ public class ActivityADT extends ActivityClassADT{
     private String type;
     private String amount;
     private String date;
-    private String time;//time created
     private String comment;
     private String[] image;
     private int numImgSaved;
 
     public ActivityADT(String activityClass, String name, String type, String amount, String date, String time, String comment, String state) {
-        super(activityClass, state);
+        super(activityClass, state, time);
         this.name = name;
         this.type = type;
         this.amount = amount;
         this.date = date;
-        this.time = time;
         this.comment = comment;
         this.image = new String[3];
         this.numImgSaved = 0;
@@ -25,7 +23,7 @@ public class ActivityADT extends ActivityClassADT{
 
     public void addImage() {
         if (numImgSaved < 3) {
-            image[numImgSaved] = getActivityClass() + name + time + (numImgSaved + 1) + ".png";
+            image[numImgSaved] = getActivityClass() + name + getTime() + (numImgSaved + 1) + ".png";
         }
     }
 
@@ -50,7 +48,7 @@ public class ActivityADT extends ActivityClassADT{
     }
 
     public String getTime() {
-        return time;
+        return super.getTime();
     }
 
     public String getComment() {
