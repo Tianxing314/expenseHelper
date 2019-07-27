@@ -8,19 +8,17 @@ public class ActivityADT extends ActivityClassADT{
     private String date;
     private String time;//time created
     private String comment;
-    private String state;//states: notSubmit, pending, finished
     private String[] image;
     private int numImgSaved;
 
     public ActivityADT(String activityClass, String name, String type, String amount, String date, String time, String comment, String state) {
-        super(activityClass);
+        super(activityClass, state);
         this.name = name;
         this.type = type;
         this.amount = amount;
         this.date = date;
         this.time = time;
         this.comment = comment;
-        this.state = state;
         this.image = new String[3];
         this.numImgSaved = 0;
     }
@@ -60,7 +58,7 @@ public class ActivityADT extends ActivityClassADT{
     }
 
     public String getState() {
-        return state;
+        return super.getState();
     }
 
     public String[] getImage() {

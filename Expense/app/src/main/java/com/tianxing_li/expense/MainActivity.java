@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,9 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.tianxing_li.expense.IO.SettingsWriter;
-
-import java.util.HashMap;
+import com.tianxing_li.expense.IO.InitializeFiles;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton floatingBTN;
     private Button accountBTN;
     private Map<String, String> settingsMap;
-    public static final String KEY_FIRST_USE_NOTE = "pref_first_use_note_key";
+    public static final String FIRST_TIME_OPEN = "pref_first_use_note_key";
+    //
 
 
     @Override
@@ -42,15 +42,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //Check if this is the first time open the app
+        /*
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (sharedPreferences.getBoolean(KEY_FIRST_USE_NOTE, true)) {
-            Log.i("Sky", "first Time");
+        if (sharedPreferences.getBoolean(FIRST_TIME_OPEN, true)) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(KEY_FIRST_USE_NOTE, false);
+            editor.putBoolean(FIRST_TIME_OPEN, false);
             editor.apply();
-            //write default setting file
-            settingsMap = new HashMap<>();
-            SettingsWriter.saveSettings(this, settingsMap);
+
+            //create and initialize all files
+            InitializeFiles.initialzeFile(this);
+        }
+        */
+        SharedPreferences settings = getSharedPreferences(FIRST_TIME_OPEN, 0);
+        if (settings.getBoolean("my_first_time", true)) {
+            //the app is being launched for first time, do something
+            Log.d("Sky", "First time");
+
+            // first time task
+
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("my_first_time", false).commit();
+            InitializeFiles.initialzeFile(this);
         }
         else {
             Log.i("Sky", "Not");
@@ -62,27 +74,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setSupportActionBar(toolbar);
 
-        floatingBTN = findViewById(R.id.fab_main_add_expense_class);
-        floatingBTN.setOnClickListener(this);
-
         viewPager = findViewById(R.id.vp_main_hold_tab_pages);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         //listen to fragment change event
-        //control floatingBTN hide/show
+        //for future update use
+        /*
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                if(position == 0) {
-                    floatingBTN.show();
-                } else {
-                    floatingBTN.hide();
-                }
+
             }
         });
-
-
+        */
 
         tabLayout = findViewById(R.id.th_main_hold_tab_heads);
         tabLayout.setupWithViewPager(viewPager);
@@ -121,11 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        //for add button
-        if (view == floatingBTN) {
-            Toast.makeText(this, "FAB selected", Toast.LENGTH_SHORT).show();
-        }
-        else if (view == accountBTN) {
+        if (view == accountBTN) {
             Intent intent = new Intent();
             intent.setClass(this, SettingActivity.class);
             startActivity(intent);

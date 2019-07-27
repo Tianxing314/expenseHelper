@@ -39,7 +39,7 @@
             />
     </RelativeLayout>
 
-    //tab content
+    <!--tab content-->
     <RelativeLayout
         android:id="@+id/rl_main_hold_tab_content"
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
 
     </RelativeLayout>
 
-    //account BTN
+    <!--account BTN-->
     <Button
         android:id="@+id/btn_main_account"
         android:layout_width="?attr/actionBarSize"
@@ -64,7 +64,8 @@
         android:background="@drawable/ic_account"/>
 
 
-    //FAB
+    <!--FAB-->
+    <!--
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_main_add_expense_class"
         android:layout_width="wrap_content"
@@ -74,6 +75,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_add"
         />
+    -->
 
     <TextView
         android:id="@+id/tv_main_title_name"

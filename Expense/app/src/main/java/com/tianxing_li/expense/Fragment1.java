@@ -1,38 +1,29 @@
 package com.tianxing_li.expense;
 
-
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ListView;
-
+import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.tianxing_li.expense.ADT.ActivityADT;
 import com.tianxing_li.expense.ADT.ActivityClassADT;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import com.tianxing_li.expense.IO.ActivityClassReader;
+import com.tianxing_li.expense.IO.ActivityClassWriter;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 
-public class Fragment1 extends Fragment {
+public class Fragment1 extends Fragment implements View.OnClickListener {
 
-    private FloatingActionButton floatingBTN;
+    FloatingActionButton floatingBTN;
+    Main1Adapter adapter;
+    List<ActivityClassADT> list;
 
     public Fragment1() {
-        // Required empty public constructor
     }
 
     @Override
@@ -43,40 +34,17 @@ public class Fragment1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment1_layout, container, false);
         ListView listView = view.findViewById(R.id.lv_main_tab1);
 
-        //##### prep data ########
-        List<ActivityClassADT> list = new ArrayList<>();
+        //check if first time open the app
 
-        ActivityClassADT activityClassADT = new ActivityClassADT("Beijing Trip");
-        list.add(activityClassADT);
+        floatingBTN = view.findViewById(R.id.fab_fragment1);
+        floatingBTN.setOnClickListener(this);
 
-        activityClassADT = new ActivityClassADT("Shanghai Trip");
-        list.add(activityClassADT);
 
-        activityClassADT = new ActivityClassADT("Xinjiang Trip");
-        list.add(activityClassADT);
+        //load data
+        list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
 
-        activityClassADT = new ActivityClassADT("Beijing Trip");
-        list.add(activityClassADT);
-
-        activityClassADT = new ActivityClassADT("Shanghai Trip");
-        list.add(activityClassADT);
-
-        activityClassADT = new ActivityClassADT("Xinjiang Trip");
-        list.add(activityClassADT);
-
-        activityClassADT = new ActivityClassADT("Beijing Trip");
-        list.add(activityClassADT);
-
-        activityClassADT = new ActivityClassADT("Shanghai Trip");
-        list.add(activityClassADT);
-
-        activityClassADT = new ActivityClassADT("Xinjiang Trip");
-        list.add(activityClassADT);
-
-        //##### end prep date ####
-
-        //Create and set adapter
-        Main1Adapter adapter = new Main1Adapter(getActivity());
+        //Set adapter
+        adapter = new Main1Adapter(getActivity());
         adapter.setList(list);
 
         //Connect adapter to listview
@@ -86,5 +54,23 @@ public class Fragment1 extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        if (view == floatingBTN) {
+            ActivityClassADT activityClassADT = new ActivityClassADT("Beijing Trip", "notsubmit");
 
+            boolean noDuplicateName = ActivityClassWriter.saveActivityClass(getActivity(), activityClassADT);
+
+            if (noDuplicateName) {
+                list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
+                adapter.setList(list);
+                adapter.notifyDataSetChanged();
+            }
+            else {
+                //TODO ask for rename
+                Toast.makeText(getContext(), "duplicate name", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
 }
