@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpActivity"
-            android:parentActivityName=".LoginActivity"/>
-
-        <activity android:name=".LoginActivity"
-            android:parentActivityName=".SettingActivity"/>
+        <activity android:name=".NotsubmitActivity"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:parentActivityName=".LoginActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".SettingActivity" />
         <activity
             android:name=".SettingActivity"
             android:parentActivityName=".MainActivity" />

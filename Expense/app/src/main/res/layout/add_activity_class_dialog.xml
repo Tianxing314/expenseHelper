@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:hint="Enter here">
-        <requestFocus/>
+        android:hint="Enter here"
+        android:cursorVisible="true">
     </EditText>
 
 </RelativeLayout>

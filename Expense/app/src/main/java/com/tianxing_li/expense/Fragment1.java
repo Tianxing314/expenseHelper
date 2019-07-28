@@ -2,6 +2,7 @@ package com.tianxing_li.expense;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,7 +25,7 @@ import com.tianxing_li.expense.IO.ActivityClassWriter;
 
 
 
-public class Fragment1 extends Fragment implements View.OnClickListener {
+public class Fragment1 extends Fragment implements View.OnClickListener{
 
     FloatingActionButton floatingBTN;
     Main1Adapter adapter;
@@ -31,6 +33,14 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
     String inputActivityClassName;
     String time;//time that FAB is clicked
     ActivityClassADT activityClassADT;
+    Main1Adapter.Fragment1ItemListener submitBTNListener = new Main1Adapter.Fragment1ItemListener() {
+        @Override
+        public void myOnclick(int position, View view) {
+            Toast.makeText(getActivity(), "submit", Toast.LENGTH_SHORT ).show();
+            //TODO change the state to "pending" in update file_class_name_file
+            //TODO send the activityClass to web end when server and website are available
+        }
+    };
 
     public Fragment1() {
     }
@@ -43,7 +53,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment1_layout, container, false);
         ListView listView = view.findViewById(R.id.lv_main_tab1);
 
-        //check if first time open the app
+        //fab
         floatingBTN = view.findViewById(R.id.fab_fragment1);
         floatingBTN.setOnClickListener(this);
 
@@ -51,11 +61,24 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
         list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
 
         //Set adapter
-        adapter = new Main1Adapter(getActivity());
+        adapter = new Main1Adapter(getActivity(), submitBTNListener);
         adapter.setList(list);
 
         //Connect adapter to listview
         listView.setAdapter(adapter);
+        Log.i("Sky", "set listener");
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //set listview item click listener
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //TODO pass the fileName to NotsubmitActivity.class intent to load correct activityADT ArrayList
+                String fileName = list.get(i).getActivityClass() + list.get(i).getTime();
+                Log.i("Sky", "create intent");
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), NotsubmitActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -71,7 +94,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(), time, Toast.LENGTH_SHORT).show();
 
             showDialog();
-
         }
     }
 
@@ -105,4 +127,17 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    /*
+    //set listener for item
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //TODO pass the fileName to NotsubmitActivity.class intent to load correct activityADT ArrayList
+        String fileName = list.get(i).getActivityClass() + list.get(i).getTime();
+        Log.i("Sky", "here");
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), NotsubmitActivity.class);
+        startActivity(intent);
+    }
+    */
 }

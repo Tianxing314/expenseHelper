@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NotsubmitActivity"
+    android:orientation="vertical">
+
+    //Title bar
+    <RelativeLayout
+        android:id="@+id/rl_i_notsubmit_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+        <include layout="@layout/toolbar_layout"/>
+    </RelativeLayout>
+
+    <!--title-->
+    <TextView
+        android:id="@+id/tv_main_title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Submit"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <!--tab content-->
+    <RelativeLayout
+        android:id="@+id/rl_notsubmit_hold_lisiview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_i_notsubmit_titlebar">
+
+        <ListView
+            android:id="@+id/lv_notsubmit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false"
+            />
+
+    </RelativeLayout>
+
+    <!--back BTN-->
+    <Button
+        android:id="@+id/btn_notsubmit_back"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/ic_arrow_back"/>
+
+
+    <!--FAB-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_notsubmit_add_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        />
+
+
+
+</RelativeLayout>
