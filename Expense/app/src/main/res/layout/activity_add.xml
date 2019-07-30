@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical"
+    tools:context=".AddActivity">
+
+    <!--top bar-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btn_add_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Add an expense"
+            android:textColor="#fff"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btn_add_submit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_submit" />
+    </RelativeLayout>
+
+    <!--body-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <!--Type Indicator-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Select a type" />
+
+        <!--select type-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--inner container 1-->
+            <LinearLayout
+                android:id="@+id/rl_i_inner_containner_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--selection 1-->
+                <RelativeLayout
+                    android:id="@+id/rl_add_type_1"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_border"
+                    android:clickable="true">
+
+                    <TextView
+                        android:id="@+id/tv_add_type1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="2dp"
+                        android:text="Transportation" />
+                </RelativeLayout>
+
+                <!--selection 2-->
+                <RelativeLayout
+                    android:id="@+id/rl_add_type_2"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_border"
+                    android:clickable="true">
+
+                    <TextView
+                        android:id="@+id/tv_add_type2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="2dp"
+                        android:text="Accommodation" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--inner container 2-->
+            <LinearLayout
+                android:id="@+id/rl_i_inner_container_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_i_inner_containner_1">
+
+                <!--selection 3-->
+                <RelativeLayout
+                    android:id="@+id/rl_add_type_3"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_border"
+                    android:clickable="true">
+
+                    <TextView
+                        android:id="@+id/tv_add_type3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="2dp"
+                        android:text="Meal" />
+                </RelativeLayout>
+
+                <!--selection 4-->
+                <RelativeLayout
+                    android:id="@+id/rl_add_type_4"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_border"
+                    android:clickable="true">
+
+                    <TextView
+                        android:id="@+id/tv_add_type4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="2dp"
+                        android:text="Other" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!--Customized type-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/rl_i_inner_container_2"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:paddingRight="10dp">-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1">-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="25dp"-->
+                        <!--android:layout_height="25dp"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:background="@drawable/ic_type" />-->
+
+                    <!--<RelativeLayout-->
+                        <!--android:layout_width="150dp"-->
+                        <!--android:layout_marginLeft="8dp"-->
+                        <!--android:background="#eee"-->
+                        <!--android:layout_height="25dp">-->
+                        <!--<EditText-->
+                            <!--android:id="@+id/et_add_type"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_marginLeft="10dp"-->
+                            <!--android:maxLength="40"-->
+                            <!--android:background="@null"-->
+                            <!--android:hint="Your type..."-->
+                            <!--android:textSize="14sp" />-->
+                    <!--</RelativeLayout>-->
+                <!--</LinearLayout>-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"/>-->
+
+            <!--</LinearLayout>-->
+
+        </RelativeLayout>
+
+        <!--Divider-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_centerInParent="true"
+                android:background="#bbb"/>
+        </RelativeLayout>
+
+        <!--Enter activity-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <!--Enter Activity-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_activity" />
+
+                <EditText
+                    android:id="@+id/et_add_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:background="@null"
+                    android:hint="Activity"
+                    android:maxLength="30"
+                    android:textColor="#666"
+                    android:textColorHint="#666"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Divider-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_centerInParent="true"
+                android:background="#bbb"/>
+        </RelativeLayout>
+
+        <!--Enter amount-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <!--Enter Amount-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/ic_currency" />
+
+                <EditText
+                    android:id="@+id/et_add_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:background="@null"
+                    android:hint="0.00"
+                    android:inputType="numberDecimal"
+                    android:maxLength="15"
+                    android:textColor="#e3551e"
+                    android:textColorHint="#e3551e"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Divider-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_centerInParent="true"
+                android:background="#bbb"/>
+        </RelativeLayout>
+
+
+        <!--select date-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_date" />
+
+            <TextView
+                android:id="@+id/tv_add_select_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                android:text="YYYY/MM/DD"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Add Comment-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_i_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/ic_comment" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:background="#fff">
+                <EditText
+                    android:id="@+id/et_add_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="70dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@null"
+                    android:hint="Comment here."
+                    android:maxLength="100"
+                    android:textColor="#666"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_add_comment_count"
+            android:layout_below="@id/ll_i_add"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:text="0/100"/>
+    </RelativeLayout>
+
+    <!--voucher indicator-->
+    <TextView
+        android:layout_marginLeft="38dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add your vouchers"
+        android:layout_marginBottom="10dp"/>
+
+    <!--add photo-->
+    <GridView
+        android:id="@+id/gv_add_photo"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:numColumns="3"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="38dp"
+        android:scrollbars="none"
+        android:columnWidth="100dp"
+        android:gravity="center"/>
+
+    <!--Test-->
+    <ImageView
+        android:id="@+id/img_add_test"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@mipmap/ic_launcher"/>
+    <Button
+        android:id="@+id/btn_add_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test"/>
+    <TextView
+        android:id="@+id/tv_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

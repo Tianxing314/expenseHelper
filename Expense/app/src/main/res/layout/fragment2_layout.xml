@@ -7,14 +7,22 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <!--list view-->
-    <!--Set the blank to the end of listview-->
-    <ListView
-        android:id="@+id/lv_main_tab2"
-        android:layout_width="wrap_content"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_pending"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </ListView>
+        <!--list view-->
+        <!--Set the blank to the end of listview-->
+        <ListView
+            android:id="@+id/lv_main_tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 
 </FrameLayout>

@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.tianxing_li.expense.ADT.ActivityClassADT;
+import com.tianxing_li.expense.adt.ActivityClassADT;
 import java.util.List;
-import com.tianxing_li.expense.IO.ActivityClassReader;
+import com.tianxing_li.expense.io.ActivityClassReader;
 
 
 
@@ -35,6 +35,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener {
         //Set adapter
         adapter = new Main3Adapter(getActivity());
         adapter.setList(list);
+        adapter.notifyDataSetChanged();
 
         //Connect adapter to listview
         listView.setAdapter(adapter);

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import com.tianxing_li.expense.ADT.ActivityADT;
+import com.tianxing_li.expense.adt.ActivityADT;
 
 public class NotsubmitAdapter extends BaseAdapter {
 
@@ -55,16 +55,16 @@ public class NotsubmitAdapter extends BaseAdapter {
         String activityType = activityADT.getType();
         //set type image base on activity type
         switch (activityType) {
-            case "food":
+            case "Meal":
                 type.setImageResource(R.drawable.ic_type_food);
                 break;
-            case "transportation":
+            case "Transportation":
                 type.setImageResource(R.drawable.ic_type_transportation);
                 break;
-            case "accomodation":
+            case "Accommodation":
                 type.setImageResource(R.drawable.ic_type_accomodation);
                 break;
-            case "other":
+            case "Others":
                 type.setImageResource(R.drawable.ic_type_other);
                 break;
         }

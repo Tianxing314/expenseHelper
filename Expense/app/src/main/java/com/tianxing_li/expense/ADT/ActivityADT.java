@@ -1,6 +1,6 @@
-package com.tianxing_li.expense.ADT;
+package com.tianxing_li.expense.adt;
 
-public class ActivityADT extends ActivityClassADT{
+public class ActivityADT {
 
     private String name;
     private String type;
@@ -10,8 +10,8 @@ public class ActivityADT extends ActivityClassADT{
     private String[] image;
     private int numImgSaved;
 
-    public ActivityADT(String activityClass, String name, String type, String amount, String date, String time, String comment, String state) {
-        super(activityClass, state, time);
+    public ActivityADT(String name, String type, String amount, String date, String comment, String[] image) {
+
         this.name = name;
         this.type = type;
         this.amount = amount;
@@ -21,15 +21,15 @@ public class ActivityADT extends ActivityClassADT{
         this.numImgSaved = 0;
     }
 
-    public void addImage() {
+
+    public void addImage(String imageName) {
         if (numImgSaved < 3) {
-            image[numImgSaved] = getActivityClass() + name + getTime() + (numImgSaved + 1) + ".png";
+            image[numImgSaved] = imageName;
+            numImgSaved += 1;
         }
     }
 
-    public String getActivityClass() {
-        return super.getActivityClass();
-    }
+
 
     public String getName() {
         return name;
@@ -47,27 +47,24 @@ public class ActivityADT extends ActivityClassADT{
         return date;
     }
 
-    public String getTime() {
-        return super.getTime();
-    }
 
     public String getComment() {
         return comment;
     }
 
-    public String getState() {
-        return super.getState();
-    }
 
     public String[] getImage() {
         return image;
     }
 
+
     public int getNumImgSaved() {
         return numImgSaved;
     }
 
+    /*
     public int getImgOrder() {
         return (numImgSaved + 1);
     }
+    */
 }

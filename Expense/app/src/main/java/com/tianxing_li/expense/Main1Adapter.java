@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.tianxing_li.expense.ADT.ActivityClassADT;
+import com.tianxing_li.expense.adt.ActivityClassADT;
 
 import java.util.List;
 

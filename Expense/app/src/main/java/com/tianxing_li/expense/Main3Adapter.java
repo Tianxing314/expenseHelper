@@ -8,11 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tianxing_li.expense.ADT.ActivityADT;
-import com.tianxing_li.expense.ADT.ActivityClassADT;
+import com.tianxing_li.expense.adt.ActivityClassADT;
 
 import java.util.List;
-import java.util.Map;
 
 public class Main3Adapter extends BaseAdapter {
 

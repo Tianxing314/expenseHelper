@@ -34,13 +34,22 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rl_i_notsubmit_titlebar">
 
-        <ListView
-            android:id="@+id/lv_notsubmit"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_notsubmit"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="100dp"
-            android:clipToPadding="false"
-            />
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/lv_notsubmit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="100dp"
+                android:clipToPadding="false"
+                />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
     </RelativeLayout>
 

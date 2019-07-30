@@ -1,4 +1,4 @@
-package com.tianxing_li.expense.ADT;
+package com.tianxing_li.expense.adt;
 
 public class ActivityClassADT {
     private String activityClass;

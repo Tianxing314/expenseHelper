@@ -14,8 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import com.tianxing_li.expense.IO.SettingsReader;
-import com.tianxing_li.expense.IO.SettingsWriter;
+import com.tianxing_li.expense.io.SettingsReader;
+import com.tianxing_li.expense.io.SettingsWriter;
 
 import java.util.Map;
 

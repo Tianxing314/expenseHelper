@@ -15,14 +15,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.tianxing_li.expense.ADT.ActivityClassADT;
+import com.tianxing_li.expense.adt.ActivityClassADT;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import com.tianxing_li.expense.IO.ActivityClassReader;
-import com.tianxing_li.expense.IO.ActivityClassWriter;
-
+import com.tianxing_li.expense.io.ActivityClassReader;
+import com.tianxing_li.expense.io.ActivityClassWriter;
+import com.tianxing_li.expense.io.ChangeState;
 
 
 public class Fragment1 extends Fragment implements View.OnClickListener{
@@ -39,6 +40,14 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
             Toast.makeText(getActivity(), "submit", Toast.LENGTH_SHORT ).show();
             //TODO change the state to "pending" in update file_class_name_file
             //TODO send the activityClass to web end when server and website are available
+            activityClassADT = list.get(position);
+            ChangeState.changeState(getActivity(), activityClassADT, "pending");
+            //load data
+            list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
+
+            //Set adapter
+            adapter.setList(list);
+            adapter.notifyDataSetChanged();
         }
     };
 
@@ -72,9 +81,12 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //TODO pass the fileName to NotsubmitActivity.class intent to load correct activityADT ArrayList
-                String fileName = list.get(i).getActivityClass() + list.get(i).getTime();
-                Log.i("Sky", "create intent");
+                String activityClass = list.get(i).getActivityClass();
+                String time = list.get(i).getTime();
+                Log.i("Sky", "Fragment1 " + activityClass + time);
                 Intent intent = new Intent();
+                intent.putExtra("activityClass", activityClass);
+                intent.putExtra("time", time);
                 intent.setClass(getActivity(), NotsubmitActivity.class);
                 startActivity(intent);
             }

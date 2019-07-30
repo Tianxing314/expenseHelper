@@ -1,19 +1,8 @@
-package com.tianxing_li.expense.IO;
-
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-import android.widget.ImageView;
-
-import com.tianxing_li.expense.ADT.ActivityADT;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+package com.tianxing_li.expense.io;
 
 public class ActivityPhotoLoader {
 
+    /*
     //imgName should include extension .png
     public static void loadImageFromStorage(ImageView img, ActivityADT activityADT) {
         String imgName = (activityADT.getActivityClass()
@@ -32,6 +21,7 @@ public class ActivityPhotoLoader {
             e.printStackTrace();
         }
     }
+    */
 }
 
 

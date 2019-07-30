@@ -1,14 +1,14 @@
-package com.tianxing_li.expense.IO;
+package com.tianxing_li.expense.io;
 
 import android.app.Activity;
 import android.util.Log;
 
-import com.tianxing_li.expense.ADT.ActivityClassADT;
+import com.tianxing_li.expense.adt.ActivityClassADT;
 
 import java.util.ArrayList;
 
-import static com.tianxing_li.expense.IO.TextReader.loadText;
-import static com.tianxing_li.expense.IO.TextWriter.saveText;
+import static com.tianxing_li.expense.io.TextReader.loadText;
+import static com.tianxing_li.expense.io.TextWriter.saveText;
 
 public class ActivityClassWriter {
 
@@ -17,7 +17,7 @@ public class ActivityClassWriter {
         String state = activityClassADT.getState();
         String time = activityClassADT.getTime();
 
-        //return false if filename already exist
+        //return false if filename already exist(barely happens)
         if (loadText(activity, (activityClassName + time)) != null) {
             return false;
         }

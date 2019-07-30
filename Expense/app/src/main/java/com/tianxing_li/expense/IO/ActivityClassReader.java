@@ -1,20 +1,19 @@
-package com.tianxing_li.expense.IO;
+package com.tianxing_li.expense.io;
 
 import android.app.Activity;
 import android.util.Log;
 
-import com.tianxing_li.expense.ADT.ActivityClassADT;
+import com.tianxing_li.expense.adt.ActivityClassADT;
 
 import java.util.ArrayList;
 
-import static com.tianxing_li.expense.IO.TextReader.loadText;
+import static com.tianxing_li.expense.io.TextReader.loadText;
 
 
 public class ActivityClassReader {
 
     public static ArrayList<ActivityClassADT> loadActivityClass (Activity activity, String state)  {
         ArrayList<ActivityClassADT> list = new ArrayList<>();
-        // check and create "activity_class_name_file" on the first time app is opened
 
         ArrayList<String> lineArray = loadText(activity, "activity_class_name_file");
 
