@@ -3,35 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#888">
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants">
 
     <!-- line layout -->
     <RelativeLayout
         android:id="@+id/rl_main_tab3_hold_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="70dp"
         android:layout_marginRight="5dp"
-        android:padding="5dp"
-        android:background="#CCC">
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/layout_border">
 
 
         <ImageView
             android:id="@+id/iv_main_tab3_logo"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_account" />
+            android:src="@drawable/ic_folder" />
 
-        <Button
-            android:id="@+id/btn_main_tab3_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="#fc0"
-            android:text="Details" />
 
         <!-- text part-->
         <TextView
@@ -47,5 +39,6 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
+
 
 </RelativeLayout>

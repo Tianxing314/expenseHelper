@@ -16,7 +16,7 @@ public class Main1Adapter extends BaseAdapter {
 
     List<ActivityClassADT> list;
     LayoutInflater inflater;
-    Button submitBTN;
+    TextView submitBTN;
     private Fragment1ItemListener submitBTNListener;
 
     public Main1Adapter(Context context, Fragment1ItemListener submitBTNListener) {
@@ -49,7 +49,7 @@ public class Main1Adapter extends BaseAdapter {
 
         View view = inflater.inflate(R.layout.tab1_item, null);
 
-        submitBTN = view.findViewById(R.id.btn_main_tab1_submit);
+        submitBTN = view.findViewById(R.id.tv_main_tab1_submit);
         submitBTN.setTag(i);
         submitBTN.setOnClickListener(submitBTNListener);
 
@@ -59,7 +59,7 @@ public class Main1Adapter extends BaseAdapter {
 
         ActivityClassADT activityClassADT = list.get(i);
         //TODO: change to setImageBitmap and get real image logo
-        logo.setImageResource(R.drawable.ic_account);
+        logo.setImageResource(R.drawable.ic_folder);
         activityName.setText((String) activityClassADT.getActivityClass());
 
         return view;

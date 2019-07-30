@@ -1,10 +1,8 @@
 package com.tianxing_li.expense;
 
-//import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
@@ -16,13 +14,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
-import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.util.Log;
@@ -438,6 +433,7 @@ public class AddActivity extends AppCompatActivity {
         startTime.updateDate(startTime.getYear(), startTime.getMonth(), 01);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(view);
+        builder.setTitle("Select date");
         builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -520,19 +516,6 @@ public class AddActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//
-//
-//
-//            try {
-//                Bitmap bitmap = ImgConverter.getBitmapFormUri(this, uri);
-//                Photo p = new Photo();
-//                p.setBitmap(bitmap);
-//                p.setAssigned();
-//                photoList.add(p);
-//                addPhotoAdapter.notifyDataSetChanged();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
         }
     }
 

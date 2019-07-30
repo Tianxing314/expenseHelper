@@ -31,9 +31,17 @@ public class Fragment2 extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment2_layout, container, false);
         ListView listView = view.findViewById(R.id.lv_main_tab2);
 
-        //########
-        pullToRefresh = view.findViewById(R.id.refresh_pending);
-        //########
+        pullToRefresh = view.findViewById(R.id.refresh_fragment2);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list = ActivityClassReader.loadActivityClass(getActivity(), "pending");
+                //Set adapter
+                adapter.setList(list);
+                adapter.notifyDataSetChanged();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
 
         //load data
         list = ActivityClassReader.loadActivityClass(getActivity(), "pending");
@@ -46,20 +54,6 @@ public class Fragment2 extends Fragment implements View.OnClickListener {
 
         //Connect adapter to listview
         listView.setAdapter(adapter);
-
-        //##############
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                list = ActivityClassReader.loadActivityClass(getActivity(), "pending");
-                //Set adapter
-                //adapter = new Main2Adapter(getActivity());
-                adapter.setList(list);
-                adapter.notifyDataSetChanged();
-                pullToRefresh.setRefreshing(false);
-            }
-        });
-        //##############
 
         return view;
     }

@@ -11,20 +11,21 @@
     <RelativeLayout
         android:id="@+id/rl_i_notsubmit_titlebar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentTop="true">
         <include layout="@layout/toolbar_layout"/>
     </RelativeLayout>
 
     <!--title-->
     <TextView
-        android:id="@+id/tv_main_title_name"
+        android:id="@+id/tv_notsubmit_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Not Submit"
-        android:textSize="30dp"
-        android:layout_alignParentTop="true"
+        android:textSize="22sp"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         />
 
     <!--tab content-->
@@ -56,10 +57,12 @@
     <!--back BTN-->
     <Button
         android:id="@+id/btn_notsubmit_back"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/ic_arrow_back"/>
 
 

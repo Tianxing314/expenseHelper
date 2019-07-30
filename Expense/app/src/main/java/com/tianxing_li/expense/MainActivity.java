@@ -7,12 +7,15 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -21,14 +24,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.tianxing_li.expense.io.InitializeFiles;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ViewPager viewPager;
     private ViewPagerAdapter adapter;
     private TabLayout tabLayout;
     private FloatingActionButton floatingBTN;
-    private Button accountBTN;
     private Map<String, String> settingsMap;
     public static final String FIRST_TIME_OPEN = "pref_first_use_note_key";
     //
@@ -37,20 +39,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);//View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        // 虚拟导航键
+        window.setNavigationBarColor(Color.parseColor("#eeeeee"));
+
+
         setContentView(R.layout.activity_main);
-
-        //Check if this is the first time open the app
-        /*
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        if (sharedPreferences.getBoolean(FIRST_TIME_OPEN, true)) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(FIRST_TIME_OPEN, false);
-            editor.apply();
-
-            //create and initialize all files
-            InitializeFiles.initialzeFile(this);
-        }
-        */
         SharedPreferences settings = getSharedPreferences(FIRST_TIME_OPEN, 0);
         if (settings.getBoolean("my_first_time", true)) {
             //the app is being launched for first time, do something
@@ -76,22 +76,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
-        //listen to fragment change event
-        //for future update use
-        /*
-        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-        });
-        */
 
         tabLayout = findViewById(R.id.th_main_hold_tab_heads);
         tabLayout.setupWithViewPager(viewPager);
 
-        accountBTN = findViewById(R.id.btn_main_account);
-        accountBTN.setOnClickListener(this);
     }
 
     @Override
@@ -105,6 +93,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         String msg = "";
         switch (item.getItemId()) {
+            case R.id.ic_account:
+                Intent intent = new Intent();
+                intent.setClass(this, SettingActivity.class);
+                startActivity(intent);
+                break;
             case R.id.ic_search:
                 msg = "search selected";
                 break;
@@ -120,14 +113,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view == accountBTN) {
-            Intent intent = new Intent();
-            intent.setClass(this, SettingActivity.class);
-            startActivity(intent);
-        }
     }
 }

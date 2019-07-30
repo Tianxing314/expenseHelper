@@ -30,20 +30,14 @@ public class TextReader {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            //TODO delete after test
-            Log.i("Sky","TextReader.java FileNotFound");
         } catch (IOException e) {
             e.printStackTrace();
-            //TODO delete after test
-            Log.i("Sky","TextReader.java IOException 1");
         } finally {
             if (fis != null) {
                 try {
                     fis.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    //TODO delete after test
-                    Log.i("Sky","TextReader.java IOException 2");
                 }
             }
         }

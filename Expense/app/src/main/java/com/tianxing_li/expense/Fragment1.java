@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,11 +35,12 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
     String inputActivityClassName;
     String time;//time that FAB is clicked
     ActivityClassADT activityClassADT;
+    SwipeRefreshLayout pullToRefresh;
+
     Main1Adapter.Fragment1ItemListener submitBTNListener = new Main1Adapter.Fragment1ItemListener() {
         @Override
         public void myOnclick(int position, View view) {
             Toast.makeText(getActivity(), "submit", Toast.LENGTH_SHORT ).show();
-            //TODO change the state to "pending" in update file_class_name_file
             //TODO send the activityClass to web end when server and website are available
             activityClassADT = list.get(position);
             ChangeState.changeState(getActivity(), activityClassADT, "pending");
@@ -62,6 +64,19 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment1_layout, container, false);
         ListView listView = view.findViewById(R.id.lv_main_tab1);
 
+        //pull down to refresh the page
+        pullToRefresh = view.findViewById(R.id.refresh_fragment1);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
+                //Set adapter
+                adapter.setList(list);
+                adapter.notifyDataSetChanged();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
         //fab
         floatingBTN = view.findViewById(R.id.fab_fragment1);
         floatingBTN.setOnClickListener(this);
@@ -80,7 +95,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
             //set listview item click listener
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //TODO pass the fileName to NotsubmitActivity.class intent to load correct activityADT ArrayList
                 String activityClass = list.get(i).getActivityClass();
                 String time = list.get(i).getTime();
                 Log.i("Sky", "Fragment1 " + activityClass + time);
@@ -129,7 +143,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                 }
                 //almost never happen, but possible
                 else {
-                    //TODO ask for rename
                     Toast.makeText(getContext(), "duplicate name", Toast.LENGTH_SHORT).show();
                 }
 
@@ -139,17 +152,4 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
-    /*
-    //set listener for item
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        //TODO pass the fileName to NotsubmitActivity.class intent to load correct activityADT ArrayList
-        String fileName = list.get(i).getActivityClass() + list.get(i).getTime();
-        Log.i("Sky", "here");
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), NotsubmitActivity.class);
-        startActivity(intent);
-    }
-    */
 }

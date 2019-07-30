@@ -71,7 +71,6 @@ public class NotsubmitAdapter extends BaseAdapter {
         name.setText((String) activityADT.getName());
         //TODO add currency sign
         amount.setText((String) activityADT.getAmount());
-        //TODO change display date format
         date.setText((String) activityADT.getDate());
 
         return view;

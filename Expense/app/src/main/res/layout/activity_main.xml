@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     //Title bar
     <RelativeLayout
@@ -15,6 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true">
             <include layout="@layout/toolbar_layout"/>
+
+
     </RelativeLayout>
 
 
@@ -34,8 +37,8 @@
             android:minHeight="?attr/actionBarSize"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            app:tabTextColor="#fff"
-            app:tabSelectedTextColor="#0ff"
+            app:tabTextColor="@color/colorPrimaryDark"
+            app:tabSelectedTextColor="@color/white"
             />
     </RelativeLayout>
 
@@ -54,14 +57,15 @@
 
     </RelativeLayout>
 
-    <!--account BTN-->
-    <Button
-        android:id="@+id/btn_main_account"
-        android:layout_width="?attr/actionBarSize"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/ic_account"/>
+
+    <!--&lt;!&ndash;account BTN&ndash;&gt;-->
+    <!--<Button-->
+        <!--android:id="@+id/btn_main_account"-->
+        <!--android:layout_width="?attr/actionBarSize"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:background="@drawable/ic_account"/>-->
 
 
     <!--FAB-->
@@ -77,14 +81,6 @@
         />
     -->
 
-    <TextView
-        android:id="@+id/tv_main_title_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Expense"
-        android:textSize="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        />
+
 
 </RelativeLayout>

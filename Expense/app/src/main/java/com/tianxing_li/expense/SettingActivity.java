@@ -46,8 +46,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         else {
             setting_notification = true;
         }
-        //############################
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
@@ -67,11 +65,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             if (!NotificationManagerCompat.from(getBaseContext()).areNotificationsEnabled()) {
                 switchBTN.setChecked(false);
 
-                //################
-                //need to set config_notification to false in config file here
                 settingMap.replace("notification", "off");
                 SettingsWriter.saveSettings(this, settingMap);
-                //################
 
                 setting_notification = false;
             }
@@ -135,24 +130,6 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
 
         if (view == backBTN) {
-
-            //option 1
-            //slow, reload previous page
-            //to any page
-            //
-            /*
-            Intent intent = new Intent();
-            intent.setClass(this, MainActivity.class );
-            startActivity(intent);
-            */
-
-
-            //option 2
-            //NavUtils.navigateUpFromSameTask(this);
-
-            //option 3
-            //fastest
-            //item may lost
             finish();
         }
         else if (view == accountBTN) {

@@ -10,7 +10,7 @@
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:background">#888</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>

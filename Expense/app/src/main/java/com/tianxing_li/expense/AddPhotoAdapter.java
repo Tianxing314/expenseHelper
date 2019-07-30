@@ -2,18 +2,12 @@ package com.tianxing_li.expense;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
-import android.view.PointerIcon;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tianxing_li.expense.adt.Photo;
 import com.tianxing_li.expense.adt.PhotoList;

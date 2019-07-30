@@ -47,15 +47,10 @@ public class Main2Adapter extends BaseAdapter {
         ImageView logo = view.findViewById(R.id.iv_main_tab2_logo);
         TextView activityName = view.findViewById(R.id.tv_main_tab2_activity_name);
 
-        /*TODO change to  ActivityADT
-        Map map = list.get(i);
 
-        logo.setImageResource((Integer) map.get("logo"));
-        title.setText((String) map.get("title"));
-        */
         ActivityClassADT activityClassADT = list.get(i);
         //TODO: change to setImageBitmap and get real image logo
-        logo.setImageResource(R.drawable.ic_account);
+        logo.setImageResource(R.drawable.ic_folder);
         activityName.setText((String) activityClassADT.getActivityClass());
 
         return view;

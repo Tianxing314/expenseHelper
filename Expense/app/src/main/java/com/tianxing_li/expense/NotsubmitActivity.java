@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,20 +28,29 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
     Button backBTN;
     NotsubmitAdapter adapter;
     ArrayList<ActivityADT> list;
-    //TODO get from frangment1
+    //get from frangment1
     String activityClass;
     String time;
     SwipeRefreshLayout pullToRefresh;
+    TextView title;
+    TextView appName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notsubmit);
 
+        appName = findViewById(R.id.tv_main_title_name);
+        appName.setText("");
+
+
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         activityClass = (String)extras.get("activityClass");
         time = (String)extras.get("time");
+
+        title = findViewById(R.id.tv_notsubmit_title);
+        title.setText(activityClass);
 
         Log.i("Sky", "NotsubActivity onCreate " + activityClass + time);
 
@@ -69,9 +79,6 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
         //use the activityClass and time passed from Fragment1 intent and load the list based on that
         list = loadActivity(NotsubmitActivity.this, activityClass, time);
 
-        //list.add(new ActivityADT(name, type, amount, date, comment, image));
-        //#######################
-
         adapter = new NotsubmitAdapter(this);
         adapter.setList(list);
 
@@ -84,9 +91,8 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
         if (view == backBTN) {
             finish();
         }
-        //TODO add addActivity function
+
         else if (view == floatingBTN) {
-            Toast.makeText(this,"FAB", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("activityClass", activityClass);
             intent.putExtra("time", time);

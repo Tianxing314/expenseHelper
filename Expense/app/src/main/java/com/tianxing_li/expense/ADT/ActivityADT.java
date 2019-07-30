@@ -62,9 +62,4 @@ public class ActivityADT {
         return numImgSaved;
     }
 
-    /*
-    public int getImgOrder() {
-        return (numImgSaved + 1);
-    }
-    */
 }
