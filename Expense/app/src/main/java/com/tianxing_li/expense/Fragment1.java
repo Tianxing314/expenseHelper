@@ -9,17 +9,18 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianxing_li.expense.adt.ActivityClassADT;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import com.tianxing_li.expense.io.ActivityClassReader;
@@ -39,17 +40,37 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
 
     Main1Adapter.Fragment1ItemListener submitBTNListener = new Main1Adapter.Fragment1ItemListener() {
         @Override
-        public void myOnclick(int position, View view) {
-            Toast.makeText(getActivity(), "submit", Toast.LENGTH_SHORT ).show();
-            //TODO send the activityClass to web end when server and website are available
-            activityClassADT = list.get(position);
-            ChangeState.changeState(getActivity(), activityClassADT, "pending");
-            //load data
-            list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
+        public void myOnclick(final int position, View view) {
 
-            //Set adapter
-            adapter.setList(list);
-            adapter.notifyDataSetChanged();
+            PopupMenu popup = new PopupMenu(getContext(), view);
+            popup.getMenuInflater().inflate(R.menu.fragment1_listview_menu,
+                    popup.getMenu());
+            popup.show();
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    switch (menuItem.getItemId()) {
+                        case R.id.menu_fragment1_submit:
+                            //TODO send the activityClass to web end when server and website are available
+                            activityClassADT = list.get(position);
+                            ChangeState.changeState(getActivity(), activityClassADT, "pending");
+                            //load data
+                            list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
+
+                            //Set adapter
+                            adapter.setList(list);
+                            adapter.notifyDataSetChanged();
+                            break;
+
+                        case R.id.menu_fragment1_delete:
+                            Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                    return false;
+                }
+            });
+
+            //##############
         }
     };
 
@@ -90,19 +111,26 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
 
         //Connect adapter to listview
         listView.setAdapter(adapter);
-        Log.i("Sky", "set listener");
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //set listview item click listener
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String activityClass = list.get(i).getActivityClass();
                 String time = list.get(i).getTime();
-                Log.i("Sky", "Fragment1 " + activityClass + time);
                 Intent intent = new Intent();
                 intent.putExtra("activityClass", activityClass);
                 intent.putExtra("time", time);
                 intent.setClass(getActivity(), NotsubmitActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getActivity(), "long clicked", Toast.LENGTH_SHORT).show();
+                return true;
             }
         });
 
@@ -123,6 +151,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
         }
     }
 
+    //add activity class dialog
     private void showDialog() {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.add_activity_class_dialog, null);
         final EditText inputText = view.findViewById(R.id.et_fragment1_input);

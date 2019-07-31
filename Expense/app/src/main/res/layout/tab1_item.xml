@@ -24,20 +24,30 @@
             android:layout_centerVertical="true"
             android:src="@drawable/ic_folder" />
 
-        <TextView
-            android:id="@+id/tv_main_tab1_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:textSize="14sp"
-            android:text="Submit"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tv_main_tab1_submit"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:textSize="14sp"-->
+            <!--android:text="Submit"-->
+            <!--android:textColor="@color/colorPrimary"-->
+            <!--android:textStyle="bold"/>-->
 
-        <!-- text part-->
+        <Button
+        android:id="@+id/btn_main_tab1_menu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_menu"/>
+
+
+    <!-- text part-->
         <TextView
             android:id="@+id/tv_main_tab1_activity_name"
             android:layout_width="wrap_content"

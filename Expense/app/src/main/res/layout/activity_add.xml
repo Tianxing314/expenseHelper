@@ -266,7 +266,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
@@ -322,6 +322,7 @@
             android:layout_marginTop="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:layout_marginBottom="5dp"
             android:paddingBottom="10dp">
 
             <ImageView
@@ -413,20 +414,20 @@
         android:gravity="center"/>
 
     <!--Test-->
-    <ImageView
-        android:id="@+id/img_add_test"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@mipmap/ic_launcher"/>
-    <Button
-        android:id="@+id/btn_add_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test"/>
-    <TextView
-        android:id="@+id/tv_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!--<ImageView-->
+        <!--android:id="@+id/img_add_test"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:background="@mipmap/ic_launcher"/>-->
+    <!--<Button-->
+        <!--android:id="@+id/btn_add_test"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="test"/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/tv_test"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 
 
 </LinearLayout>

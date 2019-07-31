@@ -7,14 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianxing_li.expense.adt.ActivityADT;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.tianxing_li.expense.io.ActivityReader.loadActivity;
 import static com.tianxing_li.expense.io.ActivityWriter.saveActivity;
@@ -32,6 +35,20 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
     SwipeRefreshLayout pullToRefresh;
     TextView title;
     TextView appName;
+
+    NotsubmitAdapter.NotsubmitItemListener deleteBTNListener = new NotsubmitAdapter.NotsubmitItemListener() {
+        @Override
+        public void myOnclick(int position, View view) {
+            Toast.makeText(NotsubmitActivity.this, "delete ", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    NotsubmitAdapter.NotsubmitItemListener editBTNListener = new NotsubmitAdapter.NotsubmitItemListener() {
+        @Override
+        public void myOnclick(int position, View view) {
+            Toast.makeText(NotsubmitActivity.this, "edit ", Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +94,12 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
         //use the activityClass and time passed from Fragment1 intent and load the list based on that
         list = loadActivity(NotsubmitActivity.this, activityClass, time);
 
-        adapter = new NotsubmitAdapter(this);
+        adapter = new NotsubmitAdapter(this, deleteBTNListener, editBTNListener);
         adapter.setList(list);
 
         //Connect adapter to listview
         listView.setAdapter(adapter);
+
     }
 
     @Override
@@ -99,8 +117,7 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
             startActivity(intent);
 
         }
-
-
     }
+
 }
 

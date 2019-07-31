@@ -3,6 +3,7 @@ package com.tianxing_li.expense;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.app.Activity;
@@ -17,6 +18,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -53,6 +55,10 @@ public class AddActivity extends AppCompatActivity {
 
     private final int REQUEST_IMAGE_CAPTURE = 1;
 
+    private final String imageFileName = "temp";
+
+    private File imageFile;
+
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
 
@@ -61,9 +67,9 @@ public class AddActivity extends AppCompatActivity {
     private Button btnBack;
     private Button btnAdd;
 
-    private Button btnTest;
-    private ImageView img_test;
-    private TextView tv_test;
+//    private Button btnTest;
+//    private ImageView img_test;
+//    private TextView tv_test;
 
     private TextView tvDate;
     private TextView tvCommentCount;
@@ -138,12 +144,27 @@ public class AddActivity extends AppCompatActivity {
     }
 
     private void takeAPhoto() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Uri uri = Uri.fromFile(new File(this.getDataDir().getAbsolutePath()+"/img/", "temp.png"));
-        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getPackageManager())!=null) {
+            try {
+                File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                imageFile = File.createTempFile(imageFileName, ".png", storageDir);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (imageFile!=null) {
+                Uri imageUri = FileProvider.getUriForFile(
+                        this, "a.android.fileProvider", imageFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(cameraIntent, 1);
+            }
         }
+    }
+
+    private File getImageFile() throws IOException {
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File imageFile = File.createTempFile(imageFileName, ".png", storageDir);
+        return imageFile;
     }
 
     private void pickImageFromGallery() {
@@ -329,20 +350,20 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
-        btnTest = findViewById(R.id.btn_add_test);
-        img_test = findViewById(R.id.img_add_test);
-        tv_test = findViewById(R.id.tv_test);
-        btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                File dataDir = AddActivity.this.getDataDir();
-                File imgDir = new File(dataDir.getAbsolutePath() + "/img/");
-                File file = new File(imgDir, "a.jpg");
-                String path = file.getPath();
-                Bitmap bitmap = BitmapFactory.decodeFile(path);
-                img_test.setImageBitmap(bitmap);
-            }
-        });
+//        btnTest = findViewById(R.id.btn_add_test);
+//        img_test = findViewById(R.id.img_add_test);
+//        tv_test = findViewById(R.id.tv_test);
+//        btnTest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                File dataDir = AddActivity.this.getDataDir();
+//                File imgDir = new File(dataDir.getAbsolutePath() + "/img/");
+//                File file = new File(imgDir, "a.jpg");
+//                String path = file.getPath();
+//                Bitmap bitmap = BitmapFactory.decodeFile(path);
+//                img_test.setImageBitmap(bitmap);
+//            }
+//        });
 
         tvCommentCount = findViewById(R.id.tv_add_comment_count);
 
@@ -482,22 +503,24 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bitmap bitmap = BitmapFactory.decodeFile(this.getDataDir().getAbsolutePath()+"/img/temp.png");
-//            String imgName = System.currentTimeMillis()+".png";
-//            PhotoSaver.saveImg(this, imgName, bitmap);
+            try {
+                Uri imageUri = FileProvider.getUriForFile(
+                        this, "a.android.fileProvider", imageFile);
+                Bitmap bitmap = ImgConverter.getBitmapFormUri(this, imageUri);
+                String imgName = System.currentTimeMillis()+".png";
+                if (bitmap==null)
+                    Log.e("wd4", "bit map is null");
+                PhotoSaver.saveImg(this, imgName, bitmap);
+                Photo p = new Photo();
+                p.setBitmap(bitmap);
+                p.setAssigned();
+                p.setPhotoName(imgName);
+                photoList.add(p);
+                addPhotoAdapter.notifyDataSetChanged();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            String imgName = System.currentTimeMillis()+".png";
-            PhotoSaver.saveImg(this, imgName, imageBitmap);
-            Photo p = new Photo();
-            p.setPhotoName(imgName);
-            p.setBitmap(imageBitmap);
-            p.setAssigned();
-            photoList.add(p);
-            addPhotoAdapter.notifyDataSetChanged();
-            //像素过低
         } else if (resultCode==RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             Uri uri = data.getData();
             try {

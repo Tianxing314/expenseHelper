@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,11 +22,20 @@ public class NotsubmitAdapter extends BaseAdapter {
     List<ActivityADT> list;
     LayoutInflater inflater;
     Context context;
+    Button deleteBTN;
+    Button editBTN;
 
-    public NotsubmitAdapter(Context context) {
+    private NotsubmitItemListener deleteBTNListener;
+
+    private NotsubmitItemListener editBTNListener;
+
+    public NotsubmitAdapter(Context context, NotsubmitItemListener deleteBTNListener, NotsubmitItemListener editBTNListener) {
 
         this.inflater = LayoutInflater.from(context);
         this.context = context;
+        this.deleteBTNListener = deleteBTNListener;
+        this.editBTNListener = editBTNListener;
+
     }
 
     public void setList(List<ActivityADT> list) {
@@ -57,12 +67,19 @@ public class NotsubmitAdapter extends BaseAdapter {
         TextView amount = view.findViewById(R.id.tv_notsubmit_amount);
         TextView date = view.findViewById(R.id.tv_notsubmit_date);
 
-        //#######
+        deleteBTN = view.findViewById(R.id.btn_notsubmit_delete);
+        deleteBTN.setTag(i);
+        deleteBTN.setOnClickListener(deleteBTNListener);
+
+        editBTN = view.findViewById(R.id.btn_notsubmit_edit);
+        editBTN.setTag(i);
+        editBTN.setOnClickListener(editBTNListener);
+
+
         TextView comment = view.findViewById(R.id.tv_notsubmit_comment);
         ImageView img1 = view.findViewById(R.id.iv_notsubmit_img1);
         ImageView img2 = view.findViewById(R.id.iv_notsubmit_img2);
         ImageView img3 = view.findViewById(R.id.iv_notsubmit_img3);
-        //#######
 
 
         ActivityADT activityADT = list.get(i);
@@ -126,30 +143,14 @@ public class NotsubmitAdapter extends BaseAdapter {
             }
         }
 
-        /*
-        if (image1 != null) {
-            img1.setImageBitmap(PhotoLoader.loadImg((Activity) context, image1));
-        } else {
-            img1.getLayoutParams().height = 0;
-            img1.getLayoutParams().width = 0;
-        }
-
-        if  (image2 != null) {
-            img2.setImageBitmap(PhotoLoader.loadImg((Activity) context, image2));
-        } else {
-            img2.getLayoutParams().height = 0;
-            img2.getLayoutParams().width = 0;
-        }
-
-        if (image3 != null) {
-            img3.setImageBitmap(PhotoLoader.loadImg((Activity) context, image3));
-        } else {
-            img3.getLayoutParams().height = 0;
-            img3.getLayoutParams().width = 0;
-        }
-        */
-        //#############
-
         return view;
+    }
+
+    public static abstract class NotsubmitItemListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            myOnclick((Integer) view.getTag(), view);
+        }
+        public abstract void myOnclick(int position, View view);
     }
 }

@@ -16,13 +16,13 @@ public class Main1Adapter extends BaseAdapter {
 
     List<ActivityClassADT> list;
     LayoutInflater inflater;
-    TextView submitBTN;
-    private Fragment1ItemListener submitBTNListener;
+    TextView menuBTN;
+    private Fragment1ItemListener menuBTNListener;
 
-    public Main1Adapter(Context context, Fragment1ItemListener submitBTNListener) {
+    public Main1Adapter(Context context, Fragment1ItemListener menuBTNListener) {
 
         this.inflater = LayoutInflater.from(context);
-        this.submitBTNListener = submitBTNListener;
+        this.menuBTNListener = menuBTNListener;
     }
 
     public void setList(List<ActivityClassADT> list) {
@@ -49,9 +49,10 @@ public class Main1Adapter extends BaseAdapter {
 
         View view = inflater.inflate(R.layout.tab1_item, null);
 
-        submitBTN = view.findViewById(R.id.tv_main_tab1_submit);
-        submitBTN.setTag(i);
-        submitBTN.setOnClickListener(submitBTNListener);
+        menuBTN = view.findViewById(R.id.btn_main_tab1_menu);
+        menuBTN.setTag(i);
+        menuBTN.setOnClickListener(menuBTNListener);
+
 
 
         ImageView logo = view.findViewById(R.id.iv_main_tab1_logo);
@@ -60,7 +61,7 @@ public class Main1Adapter extends BaseAdapter {
         ActivityClassADT activityClassADT = list.get(i);
         //TODO: change to setImageBitmap and get real image logo
         logo.setImageResource(R.drawable.ic_folder);
-        activityName.setText((String) activityClassADT.getActivityClass());
+        activityName.setText(activityClassADT.getActivityClass());
 
         return view;
     }
@@ -71,5 +72,7 @@ public class Main1Adapter extends BaseAdapter {
             myOnclick((Integer) view.getTag(), view);
         }
         public abstract void myOnclick(int position, View view);
+
+
     }
 }
