@@ -19,7 +19,7 @@ public class ActivityClassReader {
 
         for (int i = 0; i < lineArray.size(); i++) {
             String[] lineElements = lineArray.get(i).split(",");
-            ActivityClassADT activityClassADT = new ActivityClassADT(lineElements[0], lineElements[1], lineElements[2]);
+            ActivityClassADT activityClassADT = new ActivityClassADT(lineElements[0].replace("wd4sky", ","), lineElements[1], lineElements[2]);
             Log.i("Sky", activityClassADT.getState());
 
             if(activityClassADT.getState().equals(state)) {

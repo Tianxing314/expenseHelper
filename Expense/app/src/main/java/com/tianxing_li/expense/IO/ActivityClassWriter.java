@@ -31,7 +31,7 @@ public class ActivityClassWriter {
         ArrayList<String> existingFileContent = loadText(activity, "activity_class_name_file");
 
         if (existingFileContent.equals("[]")) {
-            String newFileContent = activityClassName + "," + state + "," + time + "\n";
+            String newFileContent = activityClassName.replace(",", "wd4sky") + "," + state + "," + time + "\n";
             saveText(activity, newFileContent, "activity_class_name_file");
         }
         //append the new activityClassName to activity_class_name_file
@@ -41,7 +41,7 @@ public class ActivityClassWriter {
                 Log.i("Sky", existingFileContent.get(i)+"nextLine");
                 newFileContent = newFileContent + existingFileContent.get(i) + "\n";
             }
-            newFileContent = newFileContent  + activityClassName + "," + state + "," + time + "\n";
+            newFileContent = newFileContent  + activityClassName.replace(",", "wd4sky") + "," + state + "," + time + "\n";
             saveText(activity, newFileContent, "activity_class_name_file");
         }
 

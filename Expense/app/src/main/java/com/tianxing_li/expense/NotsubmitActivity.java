@@ -10,11 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianxing_li.expense.adt.ActivityADT;
-import com.tianxing_li.expense.io.ActivityWriter;
 
 import java.util.ArrayList;
 

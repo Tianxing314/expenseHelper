@@ -15,7 +15,7 @@ public class ActivityWriter {
 
     //finalName is the activityClassName that passed from previous activity
     public static boolean saveActivity(Activity activity, ActivityADT activityADT, String activityClassName, String time) {
-        String name = activityADT.getName();
+        String name = activityADT.getName().replace(",", time);
         String type = activityADT.getType();
         String amount = activityADT.getAmount();
         String date = activityADT.getDate();

@@ -1,6 +1,8 @@
 package com.tianxing_li.expense;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +13,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import com.tianxing_li.expense.adt.ActivityADT;
+import com.tianxing_li.expense.io.PhotoLoader;
+import com.tianxing_li.expense.io.SettingsReader;
 
 public class NotsubmitAdapter extends BaseAdapter {
 
     List<ActivityADT> list;
     LayoutInflater inflater;
+    Context context;
 
     public NotsubmitAdapter(Context context) {
+
         this.inflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     public void setList(List<ActivityADT> list) {
@@ -46,8 +53,16 @@ public class NotsubmitAdapter extends BaseAdapter {
         View view = inflater.inflate(R.layout.notsubmit_item, null);
         ImageView type = view.findViewById(R.id.iv_notsubmit_type);
         TextView name = view.findViewById(R.id.tv_notsubmit_name);
+        TextView currency = view.findViewById(R.id.tv_notsubmit_currency);
         TextView amount = view.findViewById(R.id.tv_notsubmit_amount);
         TextView date = view.findViewById(R.id.tv_notsubmit_date);
+
+        //#######
+        TextView comment = view.findViewById(R.id.tv_notsubmit_comment);
+        ImageView img1 = view.findViewById(R.id.iv_notsubmit_img1);
+        ImageView img2 = view.findViewById(R.id.iv_notsubmit_img2);
+        ImageView img3 = view.findViewById(R.id.iv_notsubmit_img3);
+        //#######
 
 
         ActivityADT activityADT = list.get(i);
@@ -64,14 +79,76 @@ public class NotsubmitAdapter extends BaseAdapter {
             case "Accommodation":
                 type.setImageResource(R.drawable.ic_type_accomodation);
                 break;
-            case "Others":
+            case "Other":
                 type.setImageResource(R.drawable.ic_type_other);
                 break;
         }
-        name.setText((String) activityADT.getName());
-        //TODO add currency sign
-        amount.setText((String) activityADT.getAmount());
-        date.setText((String) activityADT.getDate());
+        name.setText(activityADT.getName());
+        //set currency sign
+        SettingsReader settingsReader = new SettingsReader((Activity)context);
+        String settedCurrency = settingsReader.getCurrencySetting();
+        if (settedCurrency.equals("CNY¥")) {
+            currency.setText("¥");
+        }
+        else {
+            currency.setText("$");
+        }
+
+
+        amount.setText(activityADT.getAmount());
+        date.setText(activityADT.getDate());
+
+        //#############
+        comment.setText(activityADT.getComment());
+        String[] image = activityADT.getImage();
+        String image1 = image[0];
+        String image2 = image[1];
+        String image3 = image[2];
+
+        Log.i("bbb", image1 + " 1");
+        Log.i("ccc", image1);
+
+        if (image1.equals("no_image")) {
+            Log.i("ccc", "here");
+            img1.getLayoutParams().height = 0;
+            img1.getLayoutParams().width = 0;
+            img2.getLayoutParams().height = 0;
+            img2.getLayoutParams().width = 0;
+            img3.getLayoutParams().height = 0;
+            img3.getLayoutParams().width = 0;
+        } else {
+            img1.setImageBitmap(PhotoLoader.loadImg((Activity) context, image1));
+            if (!image2.equals("no_image")) {
+                img2.setImageBitmap(PhotoLoader.loadImg((Activity) context, image2));
+            }
+            if (!image3.equals("no_image")) {
+                img3.setImageBitmap(PhotoLoader.loadImg((Activity) context, image3));
+            }
+        }
+
+        /*
+        if (image1 != null) {
+            img1.setImageBitmap(PhotoLoader.loadImg((Activity) context, image1));
+        } else {
+            img1.getLayoutParams().height = 0;
+            img1.getLayoutParams().width = 0;
+        }
+
+        if  (image2 != null) {
+            img2.setImageBitmap(PhotoLoader.loadImg((Activity) context, image2));
+        } else {
+            img2.getLayoutParams().height = 0;
+            img2.getLayoutParams().width = 0;
+        }
+
+        if (image3 != null) {
+            img3.setImageBitmap(PhotoLoader.loadImg((Activity) context, image3));
+        } else {
+            img3.getLayoutParams().height = 0;
+            img3.getLayoutParams().width = 0;
+        }
+        */
+        //#############
 
         return view;
     }

@@ -23,14 +23,12 @@ public class ChangeState {
         String newFileContent = "";
         for (int i = 0; i < existingFileContent.size(); i++) {
             String activityClassName = existingFileContent.get(i).split(",")[0];
-            if (!activityClassName.equals(activityClassADT.getActivityClass())) {
-                Log.i("skyli", activityClassName);
-                Log.i("skyli", activityClassADT.getActivityClass());
+            if (!activityClassName.equals(activityClassADT.getActivityClass().replace(",", "wd4sky"))) {
                 newFileContent = newFileContent + existingFileContent.get(i) + "\n";
             }
         }
         //append the existing activityClass with updated new state
-        newFileContent = newFileContent  + activityClassADT.getActivityClass() + "," + newState + "," + activityClassADT.getTime() + "\n";
+        newFileContent = newFileContent  + activityClassADT.getActivityClass().replace(",", "wd4sky") + "," + newState + "," + activityClassADT.getTime() + "\n";
         saveText(activity, newFileContent, "activity_class_name_file");
     }
 }

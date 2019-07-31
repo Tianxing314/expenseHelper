@@ -17,7 +17,7 @@ public class ActivityADT {
         this.amount = amount;
         this.date = date;
         this.comment = comment;
-        this.image = new String[3];
+        this.image = image;
         this.numImgSaved = 0;
     }
 

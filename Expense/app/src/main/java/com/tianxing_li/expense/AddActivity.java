@@ -95,7 +95,7 @@ public class AddActivity extends AppCompatActivity {
         builder.setPositiveButton("Gallery", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                             == PackageManager.PERMISSION_DENIED) {
                         //permission not granted, request it;
@@ -115,7 +115,7 @@ public class AddActivity extends AppCompatActivity {
         builder.setNegativeButton("Camera", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     if (ActivityCompat.checkSelfPermission(AddActivity.this, Manifest.permission.CAMERA)
                             != PackageManager.PERMISSION_DENIED) {
                         //permission not granted, request it;
@@ -299,14 +299,14 @@ public class AddActivity extends AppCompatActivity {
                 String amount = etAmount.getText().toString();
                 String date = tvDate.getText().toString();
                 String comment = etComment.getText().toString();
-                String[] image = {"", "", ""};
-                for (int i=0; i<photoList.size(); i++) {
-                    if (photoList.get(i)!=null)
-                        image[i] = photoList.get(i).getPhotoName();
-                }
-
+                String[] image = {"no_image", "no_image", "no_image"};
                 ActivityADT activityADT = new ActivityADT(name, type, amount, date, comment, image);
-                Log.i("Sky", "AddActivity " +activityClass + time);
+                for (int i=0; i<photoList.size(); i++) {
+                    Log.i("www"," " + photoList.size());
+                    if (photoList.get(i)!=null && photoList.get(i).getStatus()!=Photo.NEW)
+                        //image[i] = photoList.get(i).getPhotoName();
+                        activityADT.addImage(photoList.get(i).getPhotoName());
+                }
 
                 ActivityWriter.saveActivity(AddActivity.this, activityADT, activityClass, time);
                 finish();

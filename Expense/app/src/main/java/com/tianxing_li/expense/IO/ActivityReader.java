@@ -21,7 +21,7 @@ public class ActivityReader {
         for (int i = 0; i < lineArray.size(); i++) {
             String[] lineElements = lineArray.get(i).split(",");
 
-            String name = lineElements[0];
+            String name = lineElements[0].replace(time,",");
             String type = lineElements[1];
             String amount = lineElements[2];
             String date = lineElements[3];
