@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -32,7 +31,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -301,8 +299,6 @@ public class AddActivity extends AppCompatActivity {
         activityClass = (String)extras.get("activityClass");
         time = (String)extras.get("time");
 
-        Log.i("Sky", "Addactivity Oncreate " + activityClass + time);
-
         init();
     }
 
@@ -323,7 +319,6 @@ public class AddActivity extends AppCompatActivity {
                 String[] image = {"no_image", "no_image", "no_image"};
                 ActivityADT activityADT = new ActivityADT(name, type, amount, date, comment, image);
                 for (int i=0; i<photoList.size(); i++) {
-                    Log.i("www"," " + photoList.size());
                     if (photoList.get(i)!=null && photoList.get(i).getStatus()!=Photo.NEW)
                         //image[i] = photoList.get(i).getPhotoName();
                         activityADT.addImage(photoList.get(i).getPhotoName());
@@ -509,7 +504,6 @@ public class AddActivity extends AppCompatActivity {
                 Bitmap bitmap = ImgConverter.getBitmapFormUri(this, imageUri);
                 String imgName = System.currentTimeMillis()+".png";
                 if (bitmap==null)
-                    Log.e("wd4", "bit map is null");
                 PhotoSaver.saveImg(this, imgName, bitmap);
                 Photo p = new Photo();
                 p.setBitmap(bitmap);
@@ -531,7 +525,6 @@ public class AddActivity extends AppCompatActivity {
                 Photo p = new Photo();
                 p.setPhotoName(imgName);
                 bitmap = PhotoLoader.loadImg(this, imgName);
-                Log.i("wd4", uri.toString());
                 p.setBitmap(bitmap);
                 p.setAssigned();
                 photoList.add(p);

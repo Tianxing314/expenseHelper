@@ -62,4 +62,32 @@ public class ActivityADT {
         return numImgSaved;
     }
 
+    public boolean equals(ActivityADT targetActivityADT) {
+        if (!this.getName().equals((targetActivityADT.getName()))) {
+            return false;
+        }
+        if (!this.getType().equals((targetActivityADT.getType()))) {
+            return false;
+        }
+        if (!this.getAmount().equals((targetActivityADT.getAmount()))) {
+            return false;
+        }
+        if (!this.getDate().equals((targetActivityADT.getDate()))) {
+            return false;
+        }
+        if (!this.getComment().equals((targetActivityADT.getComment()))) {
+            return false;
+        }
+        if (!this.getImage()[0].equals((targetActivityADT.getImage()[0]))) {
+            return false;
+        }
+        if (!this.getImage()[1].equals((targetActivityADT.getImage()[1]))) {
+            return false;
+        }
+        if (!this.getImage()[2].equals((targetActivityADT.getImage()[2]))) {
+            return false;
+        }
+        return true;
+    }
+
 }

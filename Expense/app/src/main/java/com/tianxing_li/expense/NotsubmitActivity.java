@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,12 +14,11 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tianxing_li.expense.adt.ActivityADT;
+import com.tianxing_li.expense.io.DeleteActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.tianxing_li.expense.io.ActivityReader.loadActivity;
-import static com.tianxing_li.expense.io.ActivityWriter.saveActivity;
 
 
 public class NotsubmitActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +38,14 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
         @Override
         public void myOnclick(int position, View view) {
             Toast.makeText(NotsubmitActivity.this, "delete ", Toast.LENGTH_SHORT).show();
+            ActivityADT activityADT = list.get(position);
+            DeleteActivity.deleteActivity(NotsubmitActivity.this, activityADT, activityClass, time);
+            //load data
+            list = loadActivity(NotsubmitActivity.this, activityClass, time);
+
+            //Set adapter
+            adapter.setList(list);
+            adapter.notifyDataSetChanged();
         }
     };
 
@@ -66,8 +72,6 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
 
         title = findViewById(R.id.tv_notsubmit_title);
         title.setText(activityClass);
-
-        Log.i("Sky", "NotsubActivity onCreate " + activityClass + time);
 
         pullToRefresh = findViewById(R.id.refresh_notsubmit);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -112,7 +116,6 @@ public class NotsubmitActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent();
             intent.putExtra("activityClass", activityClass);
             intent.putExtra("time", time);
-            Log.i("Sky", "NotsubActivity onclick " + activityClass + time);
             intent.setClass(NotsubmitActivity.this, AddActivity.class);
             startActivity(intent);
 

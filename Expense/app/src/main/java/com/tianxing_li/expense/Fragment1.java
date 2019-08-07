@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +25,7 @@ import java.util.List;
 import com.tianxing_li.expense.io.ActivityClassReader;
 import com.tianxing_li.expense.io.ActivityClassWriter;
 import com.tianxing_li.expense.io.ChangeState;
+import com.tianxing_li.expense.io.DeleteActivityClass;
 
 
 public class Fragment1 extends Fragment implements View.OnClickListener{
@@ -64,13 +64,20 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
 
                         case R.id.menu_fragment1_delete:
                             Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+                            activityClassADT = list.get(position);
+                            DeleteActivityClass.deleteActivityClass(getActivity(), activityClassADT);
+                            //load data
+                            list = ActivityClassReader.loadActivityClass(getActivity(), "notsubmit");
+
+                            //Set adapter
+                            adapter.setList(list);
+                            adapter.notifyDataSetChanged();
                             break;
                     }
                     return false;
                 }
             });
 
-            //##############
         }
     };
 
